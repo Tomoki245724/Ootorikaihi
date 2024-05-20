@@ -1,0 +1,12 @@
+h2{color:tomato}
+.parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: lightyellow;
+}
+.example {
+  display: block;
+  width: 200px;
+  background:lightyellow;
+}
