@@ -13,7 +13,7 @@ main = Blueprint(
 
 # メインの地図のページ
 @main.route("/")
-@login_required # 開発時には面倒だからコメントアウトしておく
+# @login_required # 開発時には面倒だからコメントアウトしておく
 def maps():
     return render_template("maps.html")
 
