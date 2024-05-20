@@ -39,7 +39,7 @@ def signup():
 
         next_ = request.args.get("next")
         if next_ is None or not next_.startswith("/"):
-            next_ = url_for("crud.users")
+            next_ = url_for("main.maps")
         return redirect(next_)
 
     return render_template("signup.html", form=form)
