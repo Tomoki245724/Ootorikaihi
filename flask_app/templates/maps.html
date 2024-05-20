@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}{% endblock %}
+{% block static %}
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/maps.css') }}"
+/>
+<!-- Google Fonts Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<body onload="draw();">
+    <div class="info">
+        <p>test</p>
+        <p>scale: <span class="scale"></span></p>
+        <p>coordinates: <span class="coordinates"></span></p>
+    </div>
+    <div class="zoom-btn">
+        <div class="zoomin">
+            <span class="material-symbols-outlined">add</span>
+        </div>
+        <div class="zoomout">
+            <span class="material-symbols-outlined e15b">remove</span>
+        </div>
+    </div>
+    <div class="map-container">
+        <div class="pins"></div>
+    </div>
+    <script src="{{ url_for('static', filename='js/maps.js') }}"></script>
+</body>
+{% endblock %}

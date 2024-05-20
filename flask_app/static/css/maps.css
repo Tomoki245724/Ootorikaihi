@@ -17,8 +17,7 @@
 .map-container {
     width: 5000px;
     height: 5000px;
-    background-image: url("../images/demo_map.svg");
-    /* overflow: auto; */
+    background-image: url("../images/tmp_map.svg");
     zoom: 0.3;
 }
 
