@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, request
 from flask_login import login_user, logout_user, login_required
 from flask_app import db
-from flask_app.forms import SignUpForm, LoginForm
-from flask_app.models import User
+from flask_app.forms import SignUpForm, LoginForm, CreateGenreForm
+from flask_app.models import User, Genre
 
 main = Blueprint(
     "main",
@@ -15,7 +15,8 @@ main = Blueprint(
 @main.route("/")
 # @login_required # 開発時には面倒だからコメントアウトしておく
 def maps():
-    return render_template("maps.html")
+    genres = db.session.query(Genre).all()
+    return render_template("maps.html", genres=genres)
 
 # サインアップページ
 @main.route("/signup", methods=["GET", "POST"])
@@ -93,3 +94,60 @@ def delete_user(user_id):
     db.session.delete(user)
     db.session.commit()
     return redirect(url_for("main.users"))
+
+# ジャンル一覧 開発用？
+@main.route("/genres")
+@login_required
+def genres():
+    genres = db.session.query(Genre).all()
+    return render_template("genre/genres.html", genres=genres)
+
+# ジャンル作成ページ
+@main.route("/create_genre", methods=["GET", "POST"])
+@login_required
+def create_genre():
+    form = CreateGenreForm()
+    if form.validate_on_submit():
+        genre = Genre(
+            genrename=form.genrename.data,
+        )
+
+        db.session.add(genre)
+        db.session.commit()
+
+        return redirect(url_for("main.genres"))
+
+    return render_template("genre/create_genre.html", form=form)
+
+# ジャンル情報
+@main.route("/genre/<genre_id>", methods=["GET"])
+@login_required
+def genre_info(genre_id):
+    genre = Genre.query.filter_by(id=genre_id).first()
+    return render_template("genre/genre_info.html", genre=genre)
+
+# ジャンル情報（開発用）
+@main.route("/genre/dev", methods=["GET"])
+def dev_genre_info():
+    return render_template("genre/dev_genre_info.html")
+
+# ジャンル情報編集
+@main.route("/edit_genre/<genre_id>", methods=["GET", "POST"])
+@login_required
+def edit_genre(genre_id):
+    form = CreateGenreForm()
+    genre = Genre.query.filter_by(id=genre_id).first()
+    if form.validate_on_submit():
+        genre.genrename = form.genrename.data
+        db.session.commit()
+        return redirect(url_for("main.genres"))
+    return render_template("genre/edit_genre.html", genre=genre, form=form)
+
+# ジャンル削除
+@main.route("/genres/<genre_id>/delete", methods=["POST"])
+@login_required
+def delete_genre(genre_id):
+    genre = db.session.query(Genre).filter_by(id=genre_id).first()
+    db.session.delete(genre)
+    db.session.commit()
+    return redirect(url_for("genre/main.genres"))

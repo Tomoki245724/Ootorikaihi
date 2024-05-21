@@ -3,6 +3,7 @@
     margin: 0;
 }
 
+/* 開発用 */
 .info {
     z-index: 10;
     position: fixed;
@@ -14,6 +15,7 @@
     }
 }
 
+/* 地図全体 */
 .map-container {
     width: 5000px;
     height: 5000px;
@@ -21,6 +23,89 @@
     zoom: 0.3;
 }
 
+/* サイドバーを開くハンバーガーボタン */
+.open-btn {
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 5px;
+    margin: 15px;
+    background-color: aliceblue;
+    border: solid 1px #eee;
+    border-radius: 6px;
+    color: #888;
+    background-color: rgba(252, 252, 252, 0.8);
+}
+
+
+/* サイドバー */
+.sidebar {
+    display: none;
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100%;
+    border-right: solid 1px #ddd;
+    background-color: rgba(252, 252, 252, 0.8);
+
+    .heading-box {
+        width: 100%;
+        height: 50px;
+        border-bottom: 1px solid #ddd ;
+
+        .heading {
+            float: left;
+            padding: 10px 15px 4px 15px;
+            font-size: 24px;
+            color: #000;
+            vertical-align: bottom;
+            text-decoration:none;
+
+            &:hover {
+                color: #268bd2
+            }
+        }
+        
+        .close-btn {
+            float: right;
+            width: 50px;
+            height: 100%;
+            font-size: 24px;
+            color: #888;
+
+            & span {
+                margin: 13px;
+            }
+        }
+    }
+
+    .genre-list {
+        margin: 15px 20px;
+
+        .list {
+            margin-bottom: 10px;
+            list-style: none;
+
+            & p {
+                margin-bottom: 5px;
+            }
+
+            & li {
+                padding: 5px 10px;
+
+                &:hover {
+                    border-radius: 5px;
+                    background-color: #eee;
+                }
+            }
+        }
+    }
+}
+
+/* 拡大縮小ボタン */
 .zoom-btn {
     z-index: 10;
     position: fixed;

@@ -13,10 +13,30 @@
 
 {% block content %}
 <body onload="draw();">
-    <div class="info">
+    <!-- <div class="info">
         <p>test</p>
         <p>scale: <span class="scale"></span></p>
         <p>coordinates: <span class="coordinates"></span></p>
+    </div> -->
+    <span class="open-btn material-symbols-outlined">menu</span>
+    <div class="sidebar">
+        <div class="heading-box">
+            <a class="heading" href="{{ url_for('main.genres') }}">Genres</a>
+            <div class="close-btn">
+                <span class="material-symbols-outlined">close</span>
+            </div>
+        </div>
+        <ul class="genre-list">
+            <div class="list show">
+                <p>表示</p>
+                {% for genre in genres %}
+                <li>{{ genre.genrename }}</li>
+                {% endfor %}
+            </div>
+            <div class="list hide">
+                <p>非表示</p>
+            </div>
+        </ul>
     </div>
     <div class="zoom-btn">
         <div class="zoomin">

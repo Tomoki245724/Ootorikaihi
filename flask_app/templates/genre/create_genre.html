@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}ジャンル新規登録{% endblock %}
+{% block static %}{% endblock %}
+
+{% block content %}
+<body>
+    <h2>ジャンル新規作成</h2>
+    <form
+        action="{{url_for('main.create_genre', next=request.args.get('next'))}}"
+        method="POST"
+        novalidate="novalidate"
+    >
+        {{ form.csrf_token }}
+        <p>
+            {{ form.genrename.label }}
+            {{ form.genrename(size=30, placeholder="ジャンル名") }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+</body>
+{% endblock %}

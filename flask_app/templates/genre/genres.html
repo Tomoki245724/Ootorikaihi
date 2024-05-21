@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}ジャンル一覧{% endblock %}
+{% block content %}
+<body>
+    <h2>ジャンル一覧</h2>
+    <a href="{{ url_for('main.create_genre') }}">ジャンル新規作成</a>
+    <table>
+        <tr>
+            <th>ジャンルID</th>
+            <th>ジャンル名</th>
+        </tr>
+        <tr>
+            <th>dev</th>
+            <th><a href="{{url_for('main.dev_genre_info')}}">駐輪場（開発用のベタ書きhtml）</a></th>
+        </tr>
+        {% for genre in genres %}
+        <tr>
+            <th>{{ genre.id }}</th>
+            <th><a href="{{url_for('main.genre_info', genre_id=genre.id)}}">{{ genre.genrename }}</a></th>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+{% endblock %}

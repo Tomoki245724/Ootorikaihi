@@ -36,3 +36,10 @@ class LoginForm(FlaskForm):
         validators=[DataRequired("パスワードは必須です。")]
     )
     submit = SubmitField("ログイン")
+
+class CreateGenreForm(FlaskForm):
+    genrename = StringField(
+        "ジャンル名",
+        validators=[DataRequired("ジャンル名は必須です。")],
+    )
+    submit = SubmitField("新規登録")

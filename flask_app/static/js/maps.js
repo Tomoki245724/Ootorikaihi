@@ -75,5 +75,15 @@ $(function() {
         });
         pinId += 1;
         return false; // デフォルトのメニュー非表示
-    })
+    });
+
+    // サイドバーの開閉
+    $(".open-btn").click(function() {
+        $(".sidebar").css("display", "block")
+        $(".open-btn").css("display", "none")
+    });
+    $(".close-btn").click(function() {
+        $(".sidebar").css("display", "none")
+        $(".open-btn").css("display", "block")
+    });
 });
