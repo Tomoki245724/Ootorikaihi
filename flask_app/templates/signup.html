@@ -8,18 +8,19 @@
 
 {% endblock %}
 {% block content %}
-<body bgcolor = "lightyellow">
-     <h2>ユーザー新規登録</h2>
+<body>
+<div class="login">
+    <div class="login-triangle"></div>
+    <h2 class = "login-header">ユーザー新規登録</h2>
     <form
         action="{{url_for('main.signup', next=request.args.get('next'))}}"
         method="POST"
         novalidate="novalidate"
+        class = "login-container"
     >
-    <div class = "parent">
         {% for message in get_flashed_messages() %}
         <p style="color: red;">{{ message }}</p>
         {% endfor %}
-        <div class = "example">
             {{ form.csrf_token }}
             <p>
                 {{ form.username.label }}
@@ -37,8 +38,9 @@
             <span style="color: red;">{{ error }}</span>
             {% endfor %}
             <p>{{ form.submit() }}</p>
-        </div>
+    
     </div>
     </form>
+</div>
 </body>
 {% endblock %}
