@@ -1,38 +1,50 @@
 {% extends "base.html" %}
 {% block title %}ユーザー編集{% endblock %}
+{% block static %}
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/login.css') }}"
+/>
+{% endblock %}
 {% block content %}
-<h2>ユーザー編集</h2>
-<form
-    action="{{ url_for('main.edit_user', user_id=user.id) }}"
-    method="POST"
-    novalidate="novalidate"
->
-    {{ form.csrf_token }}
-    <p>
-        {{ form.username.label }} {{ form.username(placeholder="ユーザー名", value=user.username) }}
-    </p>
-    {% for error in form.username.errors %}
-    <span style="color:red;">{{ error }}</span>
-    {% endfor %}
-    <p>
-        {{ form.email.label }} {{ form.email(placeholder="メールアドレス", value=user.email) }}
-    </p>
-    {% for error in form.email.errors %}
-    <span style="color:red;">{{ error }}</span>
-    {% endfor %}
-    <p>
-        {{ form.password.label }} {{ form.password(placeholder="パスワード", value=user.password) }}
-    </p>
-    {% for error in form.password.errors %}
-    <span style="color:red;">{{ error }}</span>
-    {% endfor %}
-    <p><input type="submit" value="更新" /></p>
-</form>
-<form 
-    action="{{ url_for('main.delete_user', user_id=user.id) }}"
-    method="post"
->
-    {{ form.csrf_token }}
-    <input type="submit" value="削除">
-</form>
+<body>
+<div class="login">
+    <div class="login-triangle"></div>
+    <h2 class = "login-header">ユーザー編集</h2>
+    <form
+        action="{{ url_for('main.edit_user', user_id=user.id) }}"
+        method="POST"
+        novalidate="novalidate"
+        class = "login-container"
+    >
+        {{ form.csrf_token }}
+        <p>
+            {{ form.username.label }} {{ form.username(placeholder="ユーザー名", value=user.username) }}
+        </p>
+        {% for error in form.username.errors %}
+        <span style="color:red;">{{ error }}</span>
+        {% endfor %}
+        <p>
+            {{ form.email.label }} {{ form.email(placeholder="メールアドレス", value=user.email) }}
+        </p>
+        {% for error in form.email.errors %}
+        <span style="color:red;">{{ error }}</span>
+        {% endfor %}
+        <p>
+            {{ form.password.label }} {{ form.password(placeholder="パスワード", value=user.password) }}
+        </p>
+        {% for error in form.password.errors %}
+        <span style="color:red;">{{ error }}</span>
+        {% endfor %}
+        <p><input type="submit" value="更新" /></p>
+    </form>
+    <form 
+        action="{{ url_for('main.delete_user', user_id=user.id) }}"
+        method="post"
+    >
+        {{ form.csrf_token }}
+        <input type="submit" value="削除">
+    </form>
+</div>
+</body>
 {% endblock %}
