@@ -1,9 +1,20 @@
 {% extends "base.html" %}
 {% block title %}ジャンル一覧{% endblock %}
+
+{% block static %}
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/genre.css') }}"
+/>
+
+{% endblock %}
+
+
 {% block content %}
 <body>
-    <h2>ジャンル一覧</h2>
-    <a href="{{ url_for('main.create_genre') }}">ジャンル新規作成</a>
+<div class="genre">
+    <h2 class = "genre-header">ジャンル一覧</h2>
+    <a href="{{ url_for('main.create_genre') }}">ジャンル新規作成🖊</a>
     <table>
         <tr>
             <th>ジャンルID</th>
@@ -20,5 +31,6 @@
         </tr>
         {% endfor %}
     </table>
+</div>
 </body>
 {% endblock %}

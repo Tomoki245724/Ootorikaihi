@@ -1,10 +1,15 @@
 {% extends "base.html" %}
 {% block title %}ジャンル新規登録{% endblock %}
-{% block static %}{% endblock %}
-
+{% block static %}
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/genre.css') }}"
+/>
+{% endblock %}
 {% block content %}
 <body>
-    <h2>ジャンル新規作成</h2>
+<div class="genre">
+    <h2 class = "genre-header">ジャンル新規作成</h2>
     <form
         action="{{url_for('main.create_genre', next=request.args.get('next'))}}"
         method="POST"
@@ -17,5 +22,6 @@
         </p>
         <p>{{ form.submit() }}</p>
     </form>
+</div>
 </body>
 {% endblock %}
