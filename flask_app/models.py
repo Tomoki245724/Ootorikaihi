@@ -32,7 +32,7 @@ def load_user(user_id):
     return db.session.query(User).get(user_id)
 
 class Genre(db.Model):
-    __tablename__ = "category"
+    __tablename__ = "genre"
     Genid = db.Column(db.Integer, primary_key=True)
     Genname = db.Column(db.String)
     caption = db.Column(db.String)
