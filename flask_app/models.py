@@ -32,7 +32,7 @@ def load_user(user_id):
     return db.session.query(User).get(user_id)
 
 class Genre(db.Model):
-    __tablename__ = "genre"
+    __tablename__ = "genres"
     genid = db.Column(db.Integer, primary_key=True)
     genname = db.Column(db.String)
     caption = db.Column(db.String)
@@ -49,14 +49,14 @@ class Sitedata(db.Model):
 
 class Comment(db.Model):
     __tablename__ = "comment"
-    comid = db.Column(db.Integer)
+    comid = db.Column(db.Integer, primary_key=True)
     poster = db.Column(db.String)
     siteid = db.Column(db.Integer)
     content = db.Column(db.String)
 
 class Picture(db.Model):
     __tablename__ = "picture"
-    picid = db.Column(db.Integer)
+    picid = db.Column(db.Integer, primary_key=True)
     poster = db.Column(db.String)
     siteid = db.Column(db.Integer)
     content = db.Column(db.String)
