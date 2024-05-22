@@ -112,7 +112,7 @@ def create_genre():
             genrename=form.genrename.data,
         )
 
-        db.session.add(genre)
+        db.session.add(Genre)
         db.session.commit()
 
         return redirect(url_for("main.genres"))
@@ -148,6 +148,6 @@ def edit_genre(genre_id):
 @login_required
 def delete_genre(genre_id):
     genre = db.session.query(Genre).filter_by(id=genre_id).first()
-    db.session.delete(genre)
+    db.session.delete(Genre)
     db.session.commit()
     return redirect(url_for("main.genres"))

@@ -32,6 +32,30 @@ def load_user(user_id):
     return db.session.query(User).get(user_id)
 
 class Genre(db.Model):
-    __tablename__ = "genres"
-    id = db.Column(db.Integer, primary_key=True)
-    genrename = db.Column(db.String)
+    __tablename__ = "category"
+    Genid = db.Column(db.Integer, primary_key=True)
+    Genname = db.Column(db.String)
+    caption = db.Column(db.String)
+
+class Sitedata(db.Model):
+    __tablename__ = "sitedata"
+    siteid = db.Column(db.Integer, primary_key=True)
+    sitename = db.Column(db.String)
+    updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
+    content = db.Column(db.String)
+    mainpic = db.Column(db.String)
+    category = db.Column(db.Integer)
+    cordinates = db.Column(db.String)
+
+class Comment(db.Model):
+    __tablename__ = "comment"
+    poster = db.Column(db.String)
+    siteid = db.Column(db.Integer)
+    content = db.Column(db.String)
+
+class PSicture(db.Model):
+    __tablename__ = "picture"
+    poster = db.Column(db.String)
+    siteid = db.Column(db.Integer)
+    content = db.Column(db.String)
+    
