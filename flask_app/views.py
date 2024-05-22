@@ -150,4 +150,4 @@ def delete_genre(genre_id):
     genre = db.session.query(Genre).filter_by(id=genre_id).first()
     db.session.delete(genre)
     db.session.commit()
-    return redirect(url_for("genre/main.genres"))
+    return redirect(url_for("main.genres"))
