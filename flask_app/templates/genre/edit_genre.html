@@ -1,23 +1,23 @@
 {% extends "base.html" %}
-{% block title %}edit - {{ genre.genrename }}{% endblock %}
+{% block title %}edit - {{ genre.genname }}{% endblock %}
 {% block content %}
 <h2>ジャンル情報編集</h2>
 <form
-    action="{{ url_for('main.edit_genre', genre_id=genre.id) }}"
+    action="{{ url_for('main.edit_genre', genre_id=genre.genid) }}"
     method="POST"
     novalidate="novalidate"
 >
     {{ form.csrf_token }}
     <p>
-        {{ form.genrename.label }} {{ form.genrename(placeholder="ジャンル名", value=genre.genrename) }}
+        {{ form.genname.label }} {{ form.genname(placeholder="ジャンル名", value=genre.genname) }}
     </p>
-    {% for error in form.genrename.errors %}
+    {% for error in form.genname.errors %}
     <span style="color:red;">{{ error }}</span>
     {% endfor %}
     <p><input type="submit" value="更新" /></p>
 </form>
 <form 
-    action="{{ url_for('main.delete_genre', genre_id=genre.id) }}"
+    action="{{ url_for('main.delete_genre', genre_id=genre.genid) }}"
     method="post"
 >
     {{ form.csrf_token }}

@@ -1,9 +1,9 @@
 {% extends "base.html" %}
-{% block title %}{{ genre.genrename }}{% endblock %}
+{% block title %}{{ genre.genname }}{% endblock %}
 
 {% block content %}
-<h2>{{ genre.genrename }}</h2>
-<a href="{{url_for('main.edit_genre', genre_id=genre.id)}}">編集</a>
+<h2>{{ genre.genname }}</h2>
+<a href="{{url_for('main.edit_genre', genre_id=genre.genid)}}">編集</a>
 <!-- <p>{{ genre.description }}</p> -->
 
 <ul>

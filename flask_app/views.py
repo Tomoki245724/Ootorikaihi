@@ -109,10 +109,10 @@ def create_genre():
     form = CreateGenreForm()
     if form.validate_on_submit():
         genre = Genre(
-            genrename=form.genrename.data,
+            genname=form.genname.data,
         )
 
-        db.session.add(Genre)
+        db.session.add(genre)
         db.session.commit()
 
         return redirect(url_for("main.genres"))
@@ -123,7 +123,7 @@ def create_genre():
 @main.route("/genre/<genre_id>", methods=["GET"])
 @login_required
 def genre_info(genre_id):
-    genre = Genre.query.filter_by(id=genre_id).first()
+    genre = Genre.query.filter_by(genid=genre_id).first()
     return render_template("genre/genre_info.html", genre=genre)
 
 # ジャンル情報（開発用）
@@ -136,9 +136,9 @@ def dev_genre_info():
 @login_required
 def edit_genre(genre_id):
     form = CreateGenreForm()
-    genre = Genre.query.filter_by(id=genre_id).first()
+    genre = Genre.query.filter_by(genid=genre_id).first()
     if form.validate_on_submit():
-        genre.genrename = form.genrename.data
+        genre.genname = form.genname.data
         db.session.commit()
         return redirect(url_for("main.genres"))
     return render_template("genre/edit_genre.html", genre=genre, form=form)

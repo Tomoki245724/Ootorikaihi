@@ -38,7 +38,7 @@ class LoginForm(FlaskForm):
     submit = SubmitField("ログイン")
 
 class CreateGenreForm(FlaskForm):
-    genrename = StringField(
+    genname = StringField(
         "ジャンル名",
         validators=[DataRequired("ジャンル名は必須です。")],
     )

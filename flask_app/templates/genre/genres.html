@@ -26,8 +26,8 @@
         </tr>
         {% for genre in genres %}
         <tr>
-            <th>{{ genre.id }}</th>
-            <th><a href="{{url_for('main.genre_info', genre_id=genre.id)}}">{{ genre.genrename }}</a></th>
+            <th>{{ genre.genid }}</th>
+            <th><a href="{{url_for('main.genre_info', genre_id=genre.genid)}}">{{ genre.genname }}</a></th>
         </tr>
         {% endfor %}
     </table>
