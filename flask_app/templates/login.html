@@ -1,13 +1,21 @@
 {% extends "base.html" %}
 {% block title %}ログイン{% endblock %}
-{% block static %}{% endblock %}
+{% block static %}
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/login.css') }}"
+/>
+{% endblock %}
 {% block content %}
 <body>
-    <h2>ログイン</h2>
+<div class="login">
+    <div class="login-triangle"></div>
+    <h2 class = "login-header">ログイン</h2>
     <form
         action="{{url_for('main.login')}}"
         method="POST"
         novalidate="novalidate"
+        class = "login-container"
     >
         {% for message in get_flashed_messages() %}
         <p style="color: red;">{{ message }}</p>
@@ -23,5 +31,6 @@
         {% endfor %}
         <p>{{ form.submit() }}</p>
     </form>
+</div>
 </body>
 {% endblock %}
