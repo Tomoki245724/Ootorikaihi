@@ -33,8 +33,8 @@ def load_user(user_id):
 
 class Genre(db.Model):
     __tablename__ = "genre"
-    Genid = db.Column(db.Integer, primary_key=True)
-    Genname = db.Column(db.String)
+    genid = db.Column(db.Integer, primary_key=True)
+    genname = db.Column(db.String)
     caption = db.Column(db.String)
 
 class Sitedata(db.Model):
@@ -45,7 +45,7 @@ class Sitedata(db.Model):
     content = db.Column(db.String)
     mainpic = db.Column(db.String)
     category = db.Column(db.Integer)
-    cordinates = db.Column(db.String)
+    coodinates = db.Column(db.String)
 
 class Comment(db.Model):
     __tablename__ = "comment"
