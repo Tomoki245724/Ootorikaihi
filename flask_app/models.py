@@ -49,12 +49,14 @@ class Sitedata(db.Model):
 
 class Comment(db.Model):
     __tablename__ = "comment"
+    comid = db.Column(db.Integer)
     poster = db.Column(db.String)
     siteid = db.Column(db.Integer)
     content = db.Column(db.String)
 
-class PSicture(db.Model):
+class Picture(db.Model):
     __tablename__ = "picture"
+    picid = db.Column(db.Integer)
     poster = db.Column(db.String)
     siteid = db.Column(db.Integer)
     content = db.Column(db.String)
