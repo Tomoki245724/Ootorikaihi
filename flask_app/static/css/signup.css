@@ -1,21 +1,10 @@
 
-h2{color:tomato}
-.parent {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.example {
-  font-weight:bold;
-  font-size: large auto;
-  display: block;
-  width: 250px;
-}
+h2{color:white}
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
 
 body {
-  background: #456;
+  background: #b0c4de;
   font-family: 'Open Sans', sans-serif;
 }
 
