@@ -5,8 +5,6 @@ from flask_migrate import Migrate
 from flask_login import LoginManager
 
 from flask_app.config import config
-# from flask_app.forms import SignUpForm, LoginForm
-# from models import User
 
 db = SQLAlchemy()
 
