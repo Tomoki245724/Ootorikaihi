@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}サイト新規登録{% endblock %}
+{% block static %}{% endblock %}
+
+{% block content %}
+<body>
+    <h2>サイト新規作成 （{{ genre.genname }}）</h2>
+    <form
+        action="{{url_for('main.create_site', genre_id=genre.genid)}}"
+        method="POST"
+        novalidate="novalidate"
+    >
+        {{ form.csrf_token }}
+        <p>
+            {{ form.sitename.label }}
+            {{ form.sitename(size=30, placeholder="サイト名") }}
+        </p>
+        <p>
+            {{ form.content.label }}
+            {{ form.content }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+</body>
+{% endblock %}

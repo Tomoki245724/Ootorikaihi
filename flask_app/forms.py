@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import PasswordField, StringField, SubmitField
+from wtforms import PasswordField, StringField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Email, Length
 
 class SignUpForm(FlaskForm):
@@ -41,5 +41,15 @@ class CreateGenreForm(FlaskForm):
     genname = StringField(
         "ジャンル名",
         validators=[DataRequired("ジャンル名は必須です。")],
+    )
+    submit = SubmitField("新規登録")
+
+class CreateSiteForm(FlaskForm):
+    sitename = StringField(
+        "サイト名",
+        validators=[DataRequired("サイト名は必須です。")],
+    )
+    content = TextAreaField(
+        "概要",
     )
     submit = SubmitField("新規登録")
