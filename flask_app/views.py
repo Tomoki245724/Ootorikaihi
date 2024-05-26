@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, request
 from flask_login import login_user, logout_user, login_required
 from flask_app import db
-from flask_app.forms import SignUpForm, LoginForm, CreateGenreForm
-from flask_app.models import User, Genre
+from flask_app.forms import SignUpForm, LoginForm, CreateGenreForm, CreateSiteForm
+from flask_app.models import User, Genre, Sitedata
 
 main = Blueprint(
     "main",
@@ -73,7 +73,7 @@ def users():
     return render_template("users.html", users=users)
 
 # ユーザ情報編集
-@main.route("/users/<user_id>", methods=["GET", "POST"])
+@main.route("/users/<int:user_id>", methods=["GET", "POST"])
 @login_required
 def edit_user(user_id):
     form = SignUpForm()
@@ -87,7 +87,7 @@ def edit_user(user_id):
     return render_template("edit_user.html", user=user, form=form)
 
 # ユーザ削除
-@main.route("/users/<user_id>/delete", methods=["POST"])
+@main.route("/users/<int:user_id>/delete", methods=["POST"])
 @login_required
 def delete_user(user_id):
     user = db.session.query(User).filter_by(id=user_id).first()
@@ -120,11 +120,12 @@ def create_genre():
     return render_template("genre/create_genre.html", form=form)
 
 # ジャンル情報
-@main.route("/genre/<genre_id>", methods=["GET"])
+@main.route("/genre/<int:genre_id>", methods=["GET"])
 @login_required
 def genre_info(genre_id):
     genre = Genre.query.filter_by(genid=genre_id).first()
-    return render_template("genre/genre_info.html", genre=genre)
+    sites = Sitedata.query.filter_by(category=genre_id).all()
+    return render_template("genre/genre_info.html", genre=genre, sites=sites)
 
 # ジャンル情報（開発用）
 @main.route("/genre/dev", methods=["GET"])
@@ -132,7 +133,7 @@ def dev_genre_info():
     return render_template("genre/dev_genre_info.html")
 
 # ジャンル情報編集
-@main.route("/edit_genre/<genre_id>", methods=["GET", "POST"])
+@main.route("/edit_genre/<int:genre_id>", methods=["GET", "POST"])
 @login_required
 def edit_genre(genre_id):
     form = CreateGenreForm()
@@ -144,10 +145,60 @@ def edit_genre(genre_id):
     return render_template("genre/edit_genre.html", genre=genre, form=form)
 
 # ジャンル削除
-@main.route("/genres/<genre_id>/delete", methods=["POST"])
+@main.route("/genre/<int:genre_id>/delete", methods=["POST"])
 @login_required
 def delete_genre(genre_id):
-    genre = db.session.query(Genre).filter_by(id=genre_id).first()
-    db.session.delete(Genre)
+    genre = db.session.query(Genre).filter_by(genid=genre_id).first()
+    db.session.delete(genre)
     db.session.commit()
     return redirect(url_for("main.genres"))
+
+# サイト作成ページ
+@main.route("/create_site/<int:genre_id>", methods=["GET", "POST"])
+# @login_required
+def create_site(genre_id):
+    genre = db.session.query(Genre).filter_by(genid=genre_id).first()
+    form = CreateSiteForm()
+    if form.validate_on_submit():
+        site = Sitedata(
+            sitename=form.sitename.data,
+            category=genre_id,
+            content=form.content.data,
+        )
+
+        db.session.add(site)
+        db.session.commit()
+
+        return redirect(url_for("main.genre_info", genre_id=genre.genid))
+
+    return render_template("site/create_site.html", genre=genre, form=form)
+
+# サイト情報
+@main.route("/site/<int:site_id>", methods=["GET"])
+# @login_required
+def site_info(site_id):
+    site = Sitedata.query.filter_by(siteid=site_id).first()
+    genre = Genre.query.filter_by(genid=site.category).first()
+    return render_template("site/site_info.html",  site=site, genre=genre)
+
+# サイト情報編集
+@main.route("/edit_site/<int:site_id>", methods=["GET", "POST"])
+@login_required
+def edit_site(site_id):
+    form = CreateSiteForm()
+    site = Sitedata.query.filter_by(siteid=site_id).first()
+    genre = Genre.query.filter_by(genid=site.category).first()
+    if form.validate_on_submit():
+        site.sitename = form.sitename.data
+        db.session.commit()
+        return redirect(url_for("main.sites"))
+    return render_template("site/edit_site.html", form=form, genre=genre, site=site)
+
+# ジャンル削除
+@main.route("/site/<int:site_id>/delete", methods=["POST"])
+@login_required
+def delete_site(site_id):
+    site = Sitedata.query.filter_by(siteid=site_id).first()
+    db.session.delete(site)
+    db.session.commit()
+    return redirect(url_for("main.genre_info", genre_id=site.category))
