@@ -3,7 +3,7 @@ h2{color:tomato}
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
 
 body {
-  background: #b0c4de;
+  background: #e0ffff;
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -35,11 +35,15 @@ body {
   text-align: center;
   text-transform: uppercase;
   color: #fff;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .login-container {
   background: #ebebeb;
   padding: 12px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .login p {
@@ -83,4 +87,17 @@ body {
 
 .login input[type="submit"]:focus {
   border-color: #05a;
+}
+
+/*ログイン⇔新規登録移動*/
+
+.login a.change{
+  display:block;
+  color: #fff;
+  background: #66cdaa;
+  padding: 10px 30px;
+  display: inline-block;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
 }
