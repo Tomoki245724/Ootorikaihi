@@ -1,9 +1,16 @@
 {% extends "base.html" %}
 {% block title %}ユーザーの一覧{% endblock %}
 {% block content %}
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/login.css') }}"
+/>
+
 <body>
-    <h2>ユーザーの一覧</h2>
-    <a href="{{ url_for('main.signup') }}">ユーザー新規作成</a>
+<div class="login">
+    <h2 class ="login-header">ユーザーの一覧</h2>
+
+    <a href="{{ url_for('main.signup') }} " class = "change">ユーザー新規作成</a>
     <table>
         <tr>
             <th>ユーザーID</th>
@@ -20,5 +27,6 @@
         </tr>
         {% endfor %}
     </table>
+</div>
 </body>
 {% endblock %}
