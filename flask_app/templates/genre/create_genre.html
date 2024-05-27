@@ -20,8 +20,13 @@
             {{ form.genname.label }}
             {{ form.genname(size=30, placeholder="ジャンル名") }}
         </p>
+        <p>
+            {{ form.caption.label }}
+            {{ form.caption(size=60, placeholder="説明") }}
+        </p>
         <p>{{ form.submit() }}</p>
     </form>
+    <a href="{{url_for('main.genres')}}">一覧へ</a>
 </div>
 </body>
 {% endblock %}

@@ -36,6 +36,7 @@ class Genre(db.Model):
     genid = db.Column(db.Integer, primary_key=True)
     genname = db.Column(db.String)
     caption = db.Column(db.String)
+    pins = db.Column(db.Integer)
 
 class Sitedata(db.Model):
     __tablename__ = "sitedata"

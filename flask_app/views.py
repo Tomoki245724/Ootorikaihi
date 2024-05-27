@@ -110,8 +110,9 @@ def create_genre():
     if form.validate_on_submit():
         genre = Genre(
             genname=form.genname.data,
+            caption=form.caption.data,
+            pins=0
         )
-
         db.session.add(genre)
         db.session.commit()
 

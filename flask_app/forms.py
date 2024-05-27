@@ -42,6 +42,7 @@ class CreateGenreForm(FlaskForm):
         "ジャンル名",
         validators=[DataRequired("ジャンル名は必須です。")],
     )
+    caption = StringField("説明")
     submit = SubmitField("新規登録")
 
 class CreateSiteForm(FlaskForm):

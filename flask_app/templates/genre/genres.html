@@ -17,8 +17,10 @@
     <a href="{{ url_for('main.create_genre') }}">ジャンル新規作成🖊</a>
     <table>
         <tr>
-            <th>ジャンルID</th>
+            <th>ジャンルID(開発用)</th>
             <th>ジャンル名</th>
+            <th>説明</th>
+            <th>登録された地点</th>
         </tr>
         <tr>
             <th>dev</th>
@@ -28,6 +30,8 @@
         <tr>
             <th>{{ genre.genid }}</th>
             <th><a href="{{url_for('main.genre_info', genre_id=genre.genid)}}">{{ genre.genname }}</a></th>
+            <th>{{ genre.caption }}</th>
+            <th>{{ genre.pins }}</th>
         </tr>
         {% endfor %}
     </table>
