@@ -6,7 +6,7 @@
 <a href="{{url_for('main.genres')}}">一覧へ</a>
 <a href="{{url_for('main.edit_genre', genre_id=genre.genid)}}">編集</a>
 <a href="{{url_for('main.create_site', genre_id=genre.genid)}}">追加</a>
-<!-- <p>{{ genre.description }}</p> -->
+<p>{{ genre.caption }}</p>
 
 <ul>
 {% for site in sites %}
