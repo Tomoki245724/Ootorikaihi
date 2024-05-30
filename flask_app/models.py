@@ -46,7 +46,7 @@ class Sitedata(db.Model):
     content = db.Column(db.String)
     mainpic = db.Column(db.String)
     category = db.Column(db.Integer)
-    coodinates = db.Column(db.String)
+    coordinates = db.Column(db.String)
 
 class Comment(db.Model):
     __tablename__ = "comment"

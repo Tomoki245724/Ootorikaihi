@@ -53,4 +53,5 @@ class CreateSiteForm(FlaskForm):
     content = TextAreaField(
         "概要",
     )
+    coordinates = StringField("座標")
     submit = SubmitField("新規登録")

@@ -5,7 +5,7 @@
 <h2>{{ site.sitename }}</h2>
 <a href="{{ url_for('main.edit_site', site_id=site.siteid) }}">編集</a>
 <p>ジャンル: <a href="{{ url_for('main.genre_info', genre_id=genre.genid) }}">{{ genre.genname }}</a></p>
-<p>座標: 後で実装</p>
+<p>座標: {{ site.coordinates }}</p>
 <p>{{ site.content }}</p>
 <img src="" /> <!-- 後で実装 -->
 
