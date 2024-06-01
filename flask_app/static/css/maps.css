@@ -83,7 +83,9 @@
             list-style: none;
 
             & p {
+                padding: 5px;
                 margin-bottom: 5px;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.8);
             }
 
             & li {
@@ -92,6 +94,7 @@
                 &:hover {
                     border-radius: 5px;
                     background-color: #eee;
+                    opacity: 0.8;
                 }
             }
         }

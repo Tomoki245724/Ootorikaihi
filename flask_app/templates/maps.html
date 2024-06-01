@@ -26,11 +26,11 @@
             <div class="list show">
                 <p>表示</p>
                 {% for genre in genres %}
-                <li>{{ genre.genname }}</li>
+                <li id="genre{{ genre.genid }}" class="genre">{{ genre.genname }}</li>
                 {% endfor %}
             </div>
             <div class="list hide">
-                <p>非表示</p>
+                <p>非表示</p>   
             </div>
         </ul>
     </div>

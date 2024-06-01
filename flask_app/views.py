@@ -29,7 +29,20 @@ def get_data():
             "siteid": site.siteid,
             "sitename": site.sitename,
             "coordinates": site.coordinates,
-            "category": Genre.query.filter_by(genid=category_id).one().genname,
+            "categoryid": category_id,
+            "categoryname": Genre.query.filter_by(genid=category_id).one().genname,
+        })
+    json_data = jsonify(data)
+    return json_data
+
+@main.route("/genres_data")
+def get_genre_data():
+    genres = Genre.query.all()
+    data = []
+    for genre in genres:
+        data.append({
+            "genid": genre.genid,
+            "genname": genre.genname,
         })
     json_data = jsonify(data)
     return json_data
