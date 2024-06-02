@@ -194,7 +194,7 @@ def create_site(genre_id):
             sitename=form.sitename.data,
             category=genre_id,
             content=form.content.data,
-            coordinates=form.coordinates.data,
+            coordinates=str(form.latitude.data) + "," + str(form.longitude.data),
         )
 
         db.session.add(site)
