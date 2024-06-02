@@ -39,7 +39,6 @@ function renderData(map) {
         genres.forEach(genre => {
             genreLayers[genre.genid] = L.layerGroup();
             // layerControl.addOverlay(genreLayers[genre.genid], genre.genname);
-            console.log(`genid: ${genre.genid}`);
         });
     });
 
@@ -58,7 +57,6 @@ function renderData(map) {
                 marker.bindPopup(popup);
             }
         });
-        console.log("end fetch");
     });
 
     return genreLayers;
@@ -67,7 +65,6 @@ function renderData(map) {
 $(function() {
     var map = makeMap();
     var genreLayers = renderData(map);
-    console.log(genreLayers);
 
     // レイヤーを全て表示させる
     Object.keys(genreLayers).forEach(key => {
