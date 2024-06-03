@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, request
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 from flask_app import db
 from flask_app.forms import SignUpForm, LoginForm, CreateGenreForm, CreateSiteForm
 from flask_app.models import User, Genre, Sitedata
@@ -111,7 +111,8 @@ def create_genre():
         genre = Genre(
             genname=form.genname.data,
             caption=form.caption.data,
-            pins=0
+            pins=0,
+            creator=current_user.get_id()
         )
         db.session.add(genre)
         db.session.commit()
@@ -126,7 +127,8 @@ def create_genre():
 def genre_info(genre_id):
     genre = Genre.query.filter_by(genid=genre_id).first()
     sites = Sitedata.query.filter_by(category=genre_id).all()
-    return render_template("genre/genre_info.html", genre=genre, sites=sites)
+    creator = User.query.filter_by(id=genre.creator).first()
+    return render_template("genre/genre_info.html", genre=genre, sites=sites, creator=creator)
 
 # ジャンル情報（開発用）
 @main.route("/genre/dev", methods=["GET"])
