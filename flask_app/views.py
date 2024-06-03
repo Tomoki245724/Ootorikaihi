@@ -227,7 +227,7 @@ def edit_site(site_id):
     if form.validate_on_submit():
         site.sitename = form.sitename.data
         db.session.commit()
-        return redirect(url_for("main.sites"))
+        return redirect(url_for("main.site_info", site_id=site_id))
     return render_template("site/edit_site.html", form=form, genre=genre, site=site)
 
 # サイト削除
