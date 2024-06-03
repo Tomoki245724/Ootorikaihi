@@ -9,9 +9,10 @@ body {
 }
 
 .genre {
-  width: 1000px;
+  width: 400px;
   margin: 16px auto;
   font-size: 16px;
+  
 }
 
 table { 
@@ -58,6 +59,8 @@ table th,table td{
   font-weight: normal;
   text-transform: uppercase;
   color: #fff;
+  border-top-left-radius: 30px;
+  border-bottom-right-radius: 30px;
 }
 
 .genre-container {
