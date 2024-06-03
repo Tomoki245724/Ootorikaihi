@@ -5,8 +5,8 @@
 {% include "header.html" %}
 <h2>{{ genre.genname }}</h2>
 <a href="{{url_for('main.genres')}}">一覧へ</a>
-<a href="{{url_for('main.edit_genre', genre_id=genre.genid)}}">編集</a>
-<a href="{{url_for('main.create_site', genre_id=genre.genid)}}">追加</a>
+<a href="{{url_for('main.edit_genre', genre_id=genre.genid)}}">ジャンル情報編集</a>
+<a href="{{url_for('main.create_site', genre_id=genre.genid)}}">地点の追加</a>
 <p>{{ genre.caption }}</p>
 <p>作成者：{{ creator.username }}</p>
 

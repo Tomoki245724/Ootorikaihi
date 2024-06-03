@@ -11,7 +11,7 @@
 {% include "header.html" %}
 <div class="login">
     <div class="login-triangle"></div>
-    <h2 class = "login-header">ユーザー編集</h2>
+    <h2 class = "login-header-hukidashi">ユーザー編集</h2>
     <form
         action="{{ url_for('main.edit_user', user_id=user.id) }}"
         method="POST"
@@ -38,13 +38,16 @@
         <span style="color:red;">{{ error }}</span>
         {% endfor %}
         <p><input type="submit" value="更新" /></p>
+        
     </form>
-    <form 
+    <br>
+    <br>
+    <form
         action="{{ url_for('main.delete_user', user_id=user.id) }}"
         method="post"
-    >
+        >
         {{ form.csrf_token }}
-        <input type="submit" value="削除">
+        <input type="submit-erase" value="削除">
     </form>
 </div>
 </body>

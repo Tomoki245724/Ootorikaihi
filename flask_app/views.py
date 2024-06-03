@@ -181,7 +181,10 @@ def edit_genre(genre_id):
 @login_required
 def delete_genre(genre_id):
     genre = db.session.query(Genre).filter_by(genid=genre_id).first()
+    sites = db.session.query(Sitedata).filter_by(category=genre_id).all()
     db.session.delete(genre)
+    for site in sites:
+        db.session.delete(site)
     db.session.commit()
     return redirect(url_for("main.genres"))
 
@@ -198,7 +201,7 @@ def create_site(genre_id):
             content=form.content.data,
             coordinates=str(form.latitude.data) + "," + str(form.longitude.data),
         )
-
+        genre.pins += 1
         db.session.add(site)
         db.session.commit()
 
@@ -224,14 +227,16 @@ def edit_site(site_id):
     if form.validate_on_submit():
         site.sitename = form.sitename.data
         db.session.commit()
-        return redirect(url_for("main.sites"))
+        return redirect(url_for("main.site_info", site_id=site_id))
     return render_template("site/edit_site.html", form=form, genre=genre, site=site)
 
-# ジャンル削除
+# サイト削除
 @main.route("/site/<int:site_id>/delete", methods=["POST"])
 @login_required
 def delete_site(site_id):
-    site = Sitedata.query.filter_by(siteid=site_id).first()
+    site = db.session.query(Sitedata).filter_by(siteid=site_id).first()
+    genre = db.session.query(Genre).filter_by(genid=site.category).first()
     db.session.delete(site)
+    genre.pins += -1
     db.session.commit()
     return redirect(url_for("main.genre_info", genre_id=site.category))

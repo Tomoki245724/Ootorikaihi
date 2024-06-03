@@ -12,7 +12,7 @@
 {% include "fixheader.html" %}
 <div class="login">
     <div class="login-triangle"></div>
-    <h2 class = "login-header">ユーザー新規登録</h2>
+    <h2 class = "login-header-hukidashi">ユーザー新規登録</h2>
     <form
         action="{{url_for('main.signup', next=request.args.get('next'))}}"
         method="POST"
