@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}edit - {{ genre.genname }}{% endblock %}
 {% block content %}
+{% include "header.html" %}
 <h2>ジャンル情報編集</h2>
 <form
     action="{{ url_for('main.edit_genre', genre_id=genre.genid) }}"

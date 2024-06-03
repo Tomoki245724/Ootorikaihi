@@ -2,6 +2,7 @@
 {% block title %}{{ genre.genname }}{% endblock %}
 
 {% block content %}
+{% include "header.html" %}
 <h2>{{ genre.genname }}</h2>
 <a href="{{url_for('main.genres')}}">一覧へ</a>
 <a href="{{url_for('main.edit_genre', genre_id=genre.genid)}}">編集</a>

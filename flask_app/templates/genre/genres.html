@@ -12,6 +12,7 @@
 
 {% block content %}
 <body>
+{% include "header.html" %}
 <div class="genre">
     <h2 class = "genre-header">ジャンル一覧</h2>
     <a href="{{ url_for('main.create_genre') }}">ジャンル新規作成🖊</a>
