@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 {% block title %}サイト新規登録{% endblock %}
-{% block static %}{% endblock %}
+{% block static %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/create_site.css') }}"/>
+<!-- Leaflet用 -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="crossorigin=""/>
+<!-- Leaflet -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="crossorigin=""></script>
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+{% endblock %}
 
 {% block content %}
 <body>
@@ -19,7 +27,13 @@
             {{ form.content.label }}
             {{ form.content }}
         </p>
+        <p>
+            {{ form.latitude.label }}{{ form.latitude }}
+            {{ form.longitude.label }}{{ form.longitude }}
+        </p>
+        <div id="map"></div>
         <p>{{ form.submit() }}</p>
     </form>
+    <script src="{{ url_for('static', filename='js/create_site.js') }}"></script>
 </body>
 {% endblock %}

@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import PasswordField, StringField, SubmitField, TextAreaField
+from wtforms import PasswordField, StringField, SubmitField, TextAreaField, FloatField
 from wtforms.validators import DataRequired, Email, Length
 
 class SignUpForm(FlaskForm):
@@ -53,4 +53,7 @@ class CreateSiteForm(FlaskForm):
     content = TextAreaField(
         "概要",
     )
+    # coordinates = StringField("座標")
+    latitude = FloatField("緯度")
+    longitude = FloatField("経度")
     submit = SubmitField("新規登録")

@@ -29,8 +29,9 @@
         {% for error in form.password.errors %}
         <span style="color: red;">{{ error }}</span>
         {% endfor %}
-        <p>{{ form.submit() }}</p>
+        <p>{{ form.submit() }}</p>    
     </form>
+    <p><a href="{{url_for('main.signup')}}" class = "change">新規登録はこちら</a></p>
 </div>
 </body>
 {% endblock %}

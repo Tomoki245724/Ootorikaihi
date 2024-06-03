@@ -1,23 +1,19 @@
 {% extends "base.html" %}
 {% block title %}{% endblock %}
 {% block static %}
-<link
-    rel="stylesheet"
-    href="{{ url_for('static', filename='css/maps.css') }}"
-/>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/maps.css') }}"/>
+<!-- Leaflet用 -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="crossorigin=""/>
 <!-- Google Fonts Icons -->
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<!-- Leaflet -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="crossorigin=""></script>
 {% endblock %}
 
 {% block content %}
 <body onload="draw();">
-    <!-- <div class="info">
-        <p>test</p>
-        <p>scale: <span class="scale"></span></p>
-        <p>coordinates: <span class="coordinates"></span></p>
-    </div> -->
     <span class="open-btn material-symbols-outlined">menu</span>
     <div class="sidebar">
         <div class="heading-box">
@@ -30,25 +26,15 @@
             <div class="list show">
                 <p>表示</p>
                 {% for genre in genres %}
-                <li>{{ genre.genname }}</li>
+                <li id="genre{{ genre.genid }}" class="genre">{{ genre.genname }}</li>
                 {% endfor %}
             </div>
             <div class="list hide">
-                <p>非表示</p>
+                <p>非表示</p>   
             </div>
         </ul>
     </div>
-    <div class="zoom-btn">
-        <div class="zoomin">
-            <span class="material-symbols-outlined">add</span>
-        </div>
-        <div class="zoomout">
-            <span class="material-symbols-outlined e15b">remove</span>
-        </div>
-    </div>
-    <div class="map-container">
-        <div class="pins"></div>
-    </div>
+    <div id="map"></div>
     <script src="{{ url_for('static', filename='js/maps.js') }}"></script>
 </body>
 {% endblock %}

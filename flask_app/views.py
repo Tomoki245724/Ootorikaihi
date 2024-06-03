@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 from flask import Blueprint, render_template, flash, redirect, url_for, request
 from flask_login import login_user, logout_user, login_required, current_user
+=======
+from flask import Blueprint, render_template, flash, redirect, url_for, request, jsonify
+from flask_login import login_user, logout_user, login_required
+>>>>>>> 70f2f7629064a1efb3ff0b4162bdb456f04c6147
 from flask_app import db
 from flask_app.forms import SignUpForm, LoginForm, CreateGenreForm, CreateSiteForm
 from flask_app.models import User, Genre, Sitedata
@@ -15,8 +20,37 @@ main = Blueprint(
 @main.route("/")
 # @login_required # 開発時には面倒だからコメントアウトしておく
 def maps():
-    genres = db.session.query(Genre).all()
+    genres = Genre.query.all()
+    Users = User.query.all()
     return render_template("maps.html", genres=genres)
+
+@main.route("/data")
+def get_data():
+    sites = Sitedata.query.all()
+    data = []
+    for site in sites:
+        category_id = site.category
+        data.append({
+            "siteid": site.siteid,
+            "sitename": site.sitename,
+            "coordinates": site.coordinates,
+            "categoryid": category_id,
+            "categoryname": Genre.query.filter_by(genid=category_id).one().genname,
+        })
+    json_data = jsonify(data)
+    return json_data
+
+@main.route("/genres_data")
+def get_genre_data():
+    genres = Genre.query.all()
+    data = []
+    for genre in genres:
+        data.append({
+            "genid": genre.genid,
+            "genname": genre.genname,
+        })
+    json_data = jsonify(data)
+    return json_data
 
 # サインアップページ
 @main.route("/signup", methods=["GET", "POST"])
@@ -167,6 +201,7 @@ def create_site(genre_id):
             sitename=form.sitename.data,
             category=genre_id,
             content=form.content.data,
+            coordinates=str(form.latitude.data) + "," + str(form.longitude.data),
         )
 
         db.session.add(site)
