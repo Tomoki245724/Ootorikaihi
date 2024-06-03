@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-from flask import Blueprint, render_template, flash, redirect, url_for, request
-from flask_login import login_user, logout_user, login_required, current_user
-=======
 from flask import Blueprint, render_template, flash, redirect, url_for, request, jsonify
-from flask_login import login_user, logout_user, login_required
->>>>>>> 70f2f7629064a1efb3ff0b4162bdb456f04c6147
+from flask_login import login_user, logout_user, login_required, current_user
 from flask_app import db
 from flask_app.forms import SignUpForm, LoginForm, CreateGenreForm, CreateSiteForm
 from flask_app.models import User, Genre, Sitedata
