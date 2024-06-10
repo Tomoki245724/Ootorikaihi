@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}ジャンル新規登録{% endblock %}
 {% block static %}
-{% include "header.html" %}
+
 <link
     rel="stylesheet"
     href="{{ url_for('static', filename='css/genre.css') }}"
@@ -9,6 +9,7 @@
 {% endblock %}
 {% block content %}
 <body>
+{% include "header.html" %}
 <div class="genre">
     <h2 class = "genre-header">ジャンル新規作成</h2>
     <form
@@ -23,11 +24,12 @@
         </p>
         <p>
             {{ form.caption.label }}
-            {{ form.caption(size=60, placeholder="説明") }}
+            {{ form.caption(size=60, placeholder="ジャンルについての説明") }}
         </p>
         <p>{{ form.submit() }}</p>
     </form>
-    <a href="{{url_for('main.genres')}}">一覧へ</a>
+    <br>
+    <a href="{{url_for('main.genres')}}" class = "togray">一覧へ</a>
 </div>
 </body>
 {% endblock %}
