@@ -83,7 +83,7 @@ def login():
 
         if user is not None and user.verify_password(form.password.data):
             login_user(user)
-            return redirect(url_for("main.users"))
+            return redirect(url_for("main.maps"))
         
         flash("メールアドレスかパスワードが不正です")
     return render_template("login.html", form=form)
