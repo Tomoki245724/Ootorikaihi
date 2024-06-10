@@ -114,11 +114,11 @@ body {
 }
 
 .login input[type="submit-erase"]:hover {
-  background: #66cdaa;
+  background: #cc6688;
 }
 
 .login input[type="submit-erase"]:focus {
-  border-color:#05a;
+  border-color:#cc6688;
 }
 
 
