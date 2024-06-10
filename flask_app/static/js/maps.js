@@ -57,7 +57,6 @@ $(function() {
 
     // レイヤーの表示非表示
     $(".genre").click(function() {
-        console.log(`${this.id}`);
         var genreId = this.id.replace("genre", "");
         if ($(this).parent().hasClass("show")) {
             $(this).appendTo(".hide");
