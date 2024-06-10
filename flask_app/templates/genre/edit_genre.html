@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block title %}edit - {{ genre.genname }}{% endblock %}
+
 {% block static %}
 <link
     rel="stylesheet"
@@ -30,7 +31,6 @@
         action="{{ url_for('main.delete_genre', genre_id=genre.genid) }}"
         method="post"
     >
-        {{ form.csrf_token }}
         <br>
         <br>
         <br>

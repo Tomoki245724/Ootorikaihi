@@ -1,36 +1,60 @@
 {% extends "base.html" %}
 {% block title %}edit - {{ site.sitename }}{% endblock %}
 {% block content %}
+{% block static %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/create_site.css') }}"/>
+<script type="module" src="{{ url_for('static', filename='js/map_utils.js') }}"></script>
+<!-- Leaflet用 -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="crossorigin=""/>
+<!-- Leaflet -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="crossorigin=""></script>
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+{% endblock %}
+<body>
 <h2>サイト情報編集</h2>
-<form
-    action="{{ url_for('main.edit_site', site_id=site.siteid) }}"
-    method="POST"
-    novalidate="novalidate"
->
-    {{ form.csrf_token }}
-    <p>
-        {{ form.sitename.label }} {{ form.sitename(placeholder="サイト名", value=site.sitename) }}
-    </p>
-    {% for error in form.sitename.errors %}
-    <span style="color:red;">{{ error }}</span>
-    {% endfor %}
-    <p>
-        {{ form.content.label }} {{ form.content(value=site.content) }}
-    </p>
-    {% for error in form.content.errors %}
-    <span style="color:red;">{{ error }}</span>
-    {% endfor %}
-    <p>
-        <input type="submit" value="更新" />
-        <a href="{{ url_for('main.site_info', site_id=site.siteid) }}">キャンセル</a>
-    </p>
-</form>
-<p></p>
-<form 
-    action="{{ url_for('main.delete_site', site_id=site.siteid) }}"
-    method="post"
->
-    {{ form.csrf_token }}
-    <input type="submit" value="削除">
-</form>
+    <form
+        action="{{ url_for('main.edit_site', site_id=site.siteid) }}"
+        method="POST"
+        novalidate="novalidate"
+    >
+        {{ form.csrf_token }}
+        <p>
+            {{ form.sitename.label }} {{ form.sitename(placeholder="サイト名", value=site.sitename) }}
+        </p>
+        {% for error in form.sitename.errors %}
+        <span style="color:red;">{{ error }}</span>
+        {% endfor %}
+        <p>
+            {{ form.content.label }} {{ form.content(value=site.content) }}
+        </p>
+        {% for error in form.content.errors %}
+        <span style="color:red;">{{ error }}</span>
+        {% endfor %}
+        <p>
+            {{ form.latitude.label }}{{ form.latitude }}
+            {{ form.longitude.label }}{{ form.longitude }}
+        </p>
+        {% for error in form.content.errors %}
+        <span style="color:red;">{{ error }}</span>
+        {% endfor %}
+        <div id="map"></div>
+        <p>
+            <input type="submit" value="更新" />
+            <a href="{{ url_for('main.site_info', site_id=site.siteid) }}">キャンセル</a>
+        </p>
+    </form>
+    <p></p>
+    <form 
+        action="{{ url_for('main.delete_site', site_id=site.siteid) }}"
+        method="post"
+    >
+        <!-- {{ form.csrf_token }} -->
+        <input type="submit" value="削除">
+    </form>
+    <script>
+        var site_id = "{{ site.siteid }}";
+    </script>
+    <script type="module" src="{{ url_for('static', filename='js/edit_site.js') }}"></script>
+</body>
 {% endblock %}
