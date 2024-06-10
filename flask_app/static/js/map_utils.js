@@ -1,7 +1,7 @@
-function makeMap() {
+function makeMap(center=[36.105446527684215, 140.10174633069715]) {
     var map = L.map('map',
     {
-        center: [36.105446527684215, 140.10174633069715], // 学生会館
+        center: center,
         zoom: 15,
         zoomControl: false
     });
