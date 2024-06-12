@@ -36,5 +36,6 @@
         <p>{{ form.submit() }}</p>
     </form>
     <script type="module" src="{{ url_for('static', filename='js/create_site.js') }}"></script>
+    <a href="{{ url_for('main.genre_info', genre_id=genre.genid) }}">キャンセル</a>
 </body>
 {% endblock %}
