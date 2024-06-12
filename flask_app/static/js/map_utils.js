@@ -26,4 +26,25 @@ function makeMap(center=[36.105446527684215, 140.10174633069715]) {
     return map;
 }
 
-export { makeMap };
+function addMarker(addTo, latLng, sitename, categoryname, categoryid) {
+    var customIcon = L.icon({
+        iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
+        shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        tooltipAnchor: [16, -28],
+        shadowSize: [41, 41],
+        className: `icon-${ categoryid }`,
+    });
+    var marker = L.marker(latLng, {icon: customIcon}).addTo(addTo);
+    var popup = L.popup({
+        closeButton: false,
+        className: "custom-popup",
+    }).setContent(
+        `${ sitename }<span>${ categoryname }</span>`
+    );
+    marker.bindPopup(popup);
+}
+
+export { makeMap, addMarker };

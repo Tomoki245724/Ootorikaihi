@@ -1,4 +1,4 @@
-import { makeMap } from "./map_utils.js"
+import { makeMap, addMarker } from "./map_utils.js"
 
 function renderData(map) {
     var dataUrl = "/data"; // jsonデータのあるエンドポイント
@@ -21,15 +21,14 @@ function renderData(map) {
             var coordinates = site.coordinates;
             if (coordinates) {
                 var [lat, lng] = coordinates.split(",").map(parseFloat);
-                var marker = L.marker([lat, lng]).addTo(genreLayers[site.categoryid]);
-                var popup = L.popup({
-                    closeButton: false,
-                    className: "custom-popup",
-                }).setContent(
-                    `${ site.sitename }<span>${ site.categoryname }</span>`
+                addMarker(
+                    genreLayers[site.categoryid],
+                    [lat, lng],
+                    site.sitename,
+                    site.categoryname,
+                    site.categoryid,
                 );
-                marker.bindPopup(popup);
-            }
+            };
         });
     });
 
@@ -43,6 +42,8 @@ $(function() {
     // レイヤーを全て表示させる
     Object.keys(genreLayers).forEach(key => {
         map.addLayer(genreLayers[key]);
+        var color_deg = Number(key) * 50;
+        $(`.icon-${ key }`).css("filter", `hue-rotate(${ color_deg }deg)`);
     });
 
     // サイドバーの開閉
@@ -64,7 +65,8 @@ $(function() {
         } else {
             $(this).appendTo(".show");
             map.addLayer(genreLayers[genreId]);
+            var color_deg = Number(genreId) * 50;
+            $(`.icon-${ genreId }`).css("filter", `hue-rotate(${ color_deg }deg)`);
         };
     });
 });
-
