@@ -32,6 +32,7 @@
         action="{{ url_for('main.delete_genre', genre_id=genre.genid) }}"
         method="post"
     >
+        {{ form.csrf_token }}
         <br>
         <br>
         <br>

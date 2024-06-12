@@ -50,7 +50,8 @@
                 action="{{ url_for('main.delete_site', site_id=site.siteid) }}"
                 method="post"
             >
-                <input type="submit" value="削除">
+            {{ form.csrf_token }}
+            <input type="submit" value="削除">
             </form>
             </p>
     {% endif %}
