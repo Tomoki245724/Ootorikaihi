@@ -65,7 +65,7 @@ $(function() {
         } else {
             $(this).appendTo(".show");
             map.addLayer(genreLayers[genreId]);
-            var color_deg = Number(genreId) * 50;
+            var color_deg = Number(genreId) * 53;
             $(`.icon-${ genreId }`).css("filter", `hue-rotate(${ color_deg }deg)`);
         };
     });
