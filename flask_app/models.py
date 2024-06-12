@@ -37,7 +37,7 @@ class Genre(db.Model):
     genname = db.Column(db.String)
     caption = db.Column(db.String)
     pins = db.Column(db.Integer)
-    creator = db.Column(db.String)
+    creator = db.Column(db.Integer)
 
 class Sitedata(db.Model):
     __tablename__ = "sitedata"
@@ -48,6 +48,7 @@ class Sitedata(db.Model):
     mainpic = db.Column(db.String)
     category = db.Column(db.Integer)
     coordinates = db.Column(db.String)
+    creator = db.Column(db.Integer)
 
 class Comment(db.Model):
     __tablename__ = "comment"

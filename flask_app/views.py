@@ -200,6 +200,7 @@ def create_site(genre_id):
             category=genre_id,
             content=form.content.data,
             coordinates=str(form.latitude.data) + "," + str(form.longitude.data),
+            creator=current_user.get_id()
         )
         genre.pins += 1
         db.session.add(site)
@@ -215,7 +216,8 @@ def create_site(genre_id):
 def site_info(site_id):
     site = Sitedata.query.filter_by(siteid=site_id).first()
     genre = Genre.query.filter_by(genid=site.category).first()
-    return render_template("site/site_info.html",  site=site, genre=genre)
+    creator = User.query.filter_by(id=genre.creator).first()
+    return render_template("site/site_info.html",  site=site, genre=genre, creator=creator)
 
 # サイト情報編集
 @main.route("/edit_site/<int:site_id>", methods=["GET", "POST"])
