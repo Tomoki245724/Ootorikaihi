@@ -11,7 +11,6 @@
     {% include "header.html" %}
 <div class="genre">
     <h2 class = "genre-header">{{ genre.genname }}</h2>
-    <a href="{{url_for('main.genres')}}" class = "togray">ジャンル一覧へ</a>
     <a href="{{url_for('main.edit_genre', genre_id=genre.genid)}}" class = "togreen">ジャンル情報編集</a>
     <a href="{{url_for('main.create_site', genre_id=genre.genid)}}" class = "tonew">地点の追加</a>
     <p>{{ genre.caption }}</p>
@@ -22,6 +21,7 @@
         <a href="{{ url_for('main.site_info', site_id=site.siteid) }}" class = "tonext">{{ site.sitename }}</a>
     {% endfor %}
     </ul>
+    <a href="{{url_for('main.genres')}}" class = "togray">ジャンル一覧へ</a>
 </div>
 </body>
 {% endblock %}
