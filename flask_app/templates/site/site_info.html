@@ -1,24 +1,41 @@
 {% extends "base.html" %}
 {% block title %}{{ site.sitename }}{% endblock %}
+{% block static %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/create_site.css') }}"/>
+<script type="module" src="{{ url_for('static', filename='js/map_utils.js') }}"></script>
+<!-- Leaflet用 -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="crossorigin=""/>
+<!-- Leaflet -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="crossorigin=""></script>
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+{% endblock %}
+
 
 {% block content %}
-<h2>{{ site.sitename }}</h2>
-<a href="{{ url_for('main.edit_site', site_id=site.siteid) }}">編集</a>
-<p>ジャンル: <a href="{{ url_for('main.genre_info', genre_id=genre.genid) }}">{{ genre.genname }}</a></p>
-<p>作成者: {{ creator.username }}</p>
-<!-- 座標を表示しても仕方ないと感じたのでコメントアウトしておきます。<p>座標: {{ site.coordinates }}</p> -->
-<p>{{ site.content }}</p>
-<img src="" /> <!-- 後で実装 -->
+<body>
+    <h2>{{ site.sitename }}</h2>
+    <a href="{{ url_for('main.edit_site', site_id=site.siteid) }}">編集</a>
+    <p>ジャンル: <a href="{{ url_for('main.genre_info', genre_id=genre.genid) }}">{{ genre.genname }}</a></p>
+    <p>座標: {{ site.coordinates }}</p>
+    <div id="map"></div>
+    <p>{{ site.content }}</p>
+    <img src="" /> <!-- 後で実装 -->
 
-<ul>
-<!-- {% for picture in pictures %} -->
-    <li><img src="" /></li> <!-- 後で実装 -->
-<!-- {% endfor %} -->
-</ul>
-
-<ul>
-    <!-- {% for comment in comments %} -->
-        <li></li>
+    <ul>
+    <!-- {% for picture in pictures %} -->
+        <li><img src="" /></li> <!-- 後で実装 -->
     <!-- {% endfor %} -->
-</ul>
+    </ul>
+
+    <ul>
+        <!-- {% for comment in comments %} -->
+            <li></li>
+        <!-- {% endfor %} -->
+    </ul>
+    <script>
+        var site_id = "{{ site.siteid }}";
+    </script>
+    <script type="module" src="{{ url_for('static', filename='js/site_info.js') }}"></script>
+</body>
 {% endblock %}

@@ -1,41 +1,36 @@
 {% extends "base.html" %}
 {% block title %}ジャンル一覧{% endblock %}
-
 {% block static %}
 <link
     rel="stylesheet"
     href="{{ url_for('static', filename='css/genre.css') }}"
 />
-
 {% endblock %}
-
-
 {% block content %}
 <body>
+{% include "header.html" %}
 <div class="genre">
-    <h2 class = "genre-header">ジャンル一覧</h2>
-    <a href="{{ url_for('main.create_genre') }}">ジャンル新規作成🖊</a>
+    <h2 class = "genre-header" >ジャンル一覧</h2>
+    <a href="{{ url_for('main.create_genre') }}" class = "tonew">ジャンル新規作成🖊</a>
+    <br>
+    <br>
     <table>
         <tr>
-            <th>ジャンルID(開発用)</th>
             <th>ジャンル名</th>
             <th>説明</th>
             <th>登録された地点</th>
         </tr>
-        <tr>
-            <th>dev</th>
-            <th><a href="{{url_for('main.dev_genre_info')}}">駐輪場（開発用のベタ書きhtml）</a></th>
-        </tr>
+
         {% for genre in genres %}
         <tr>
-            <th>{{ genre.genid }}</th>
-            <th><a href="{{url_for('main.genre_info', genre_id=genre.genid)}}">{{ genre.genname }}</a></th>
+            <th><a href="{{url_for('main.genre_info', genre_id=genre.genid)}}" class = "tonext">{{ genre.genname }}</a></th>
             <th>{{ genre.caption }}</th>
             <th>{{ genre.pins }}</th>
         </tr>
         {% endfor %}
     </table>
-    <a href="{{url_for('main.maps')}}">地図へ戻る</a>
+    <br>
+    <a href="{{url_for('main.maps')}}" class = "togray">地図へ戻る</a>
 </div>
 </body>
 {% endblock %}

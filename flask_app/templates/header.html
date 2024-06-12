@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}ヘッダー{% endblock %}
+{% block static %}
+<link
+    rel="stylesheet" href="{{url_for('static',filename='css/header.css')}}"
+/>
+{% endblock %}
+{% block content %}
+<body>
+    <header>
+        
+        <h1 class="title">
+            <a href="{{url_for('main.maps')}}" class="header">つくマップ</a>
+        </h1>
+        </header>
+</body>
+{% endblock %}

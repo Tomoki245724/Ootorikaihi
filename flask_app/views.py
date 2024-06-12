@@ -35,6 +35,20 @@ def get_data():
     json_data = jsonify(data)
     return json_data
 
+@main.route("/data/<int:site_id>")
+def get_sitedata(site_id):
+    site = Sitedata.query.filter_by(siteid=site_id).first()
+    category_id = site.category
+    data = [{
+        "siteid": site.siteid,
+        "sitename": site.sitename,
+        "coordinates": site.coordinates,
+        "categoryid": category_id,
+        "categoryname": Genre.query.filter_by(genid=category_id).one().genname,
+    }]
+    json_data = jsonify(data)
+    return json_data
+
 @main.route("/genres_data")
 def get_genre_data():
     genres = Genre.query.all()
@@ -83,7 +97,7 @@ def login():
 
         if user is not None and user.verify_password(form.password.data):
             login_user(user)
-            return redirect(url_for("main.users"))
+            return redirect(url_for("main.maps"))
         
         flash("メールアドレスかパスワードが不正です")
     return render_template("login.html", form=form)
@@ -228,6 +242,8 @@ def edit_site(site_id):
     genre = Genre.query.filter_by(genid=site.category).first()
     if form.validate_on_submit():
         site.sitename = form.sitename.data
+        site.content = form.content.data
+        site.coordinates = str(form.latitude.data) + "," + str(form.longitude.data)
         db.session.commit()
         return redirect(url_for("main.site_info", site_id=site_id))
     return render_template("site/edit_site.html", form=form, genre=genre, site=site)

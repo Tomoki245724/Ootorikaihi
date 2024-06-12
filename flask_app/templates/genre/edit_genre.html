@@ -1,26 +1,43 @@
 {% extends "base.html" %}
 {% block title %}edit - {{ genre.genname }}{% endblock %}
+
+{% block static %}
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/genre.css') }}"
+/>
+{% endblock %}
 {% block content %}
-<h2>ジャンル情報編集</h2>
-<form
-    action="{{ url_for('main.edit_genre', genre_id=genre.genid) }}"
-    method="POST"
-    novalidate="novalidate"
->
-    {{ form.csrf_token }}
-    <p>
-        {{ form.genname.label }} {{ form.genname(placeholder="ジャンル名", value=genre.genname) }}
-    </p>
-    {% for error in form.genname.errors %}
-    <span style="color:red;">{{ error }}</span>
-    {% endfor %}
-    <p><input type="submit" value="更新" /></p>
-</form>
-<form 
-    action="{{ url_for('main.delete_genre', genre_id=genre.genid) }}"
-    method="post"
->
-    {{ form.csrf_token }}
-    <input type="submit" value="削除">
-</form>
+<body>
+    {% include "header.html" %}
+<div class="genre">
+    <h2 class = "genre-header">ジャンル情報編集</h2>
+    <form
+        action="{{ url_for('main.edit_genre', genre_id=genre.genid) }}"
+        method="POST"
+        novalidate="novalidate"
+    >
+        {{ form.csrf_token }}
+        <p>
+            {{ form.genname.label }} {{ form.genname(placeholder="ジャンル名", value=genre.genname) }}
+        </p>
+        {% for error in form.genname.errors %}
+        <span style="color:red;">{{ error }}</span>
+        {% endfor %}
+        <br>
+        <p><input type="submit" value="更新" /></p>
+    </form>
+    <form 
+        action="{{ url_for('main.delete_genre', genre_id=genre.genid) }}"
+        method="post"
+    >
+        <br>
+        <br>
+        <br>
+        <input type="submit-erase" value="削除">
+        <br>
+        <a href="{{url_for('main.genres')}}" class = "togray">ジャンル一覧へ</a>
+    </form>
+</div>
+</body>
 {% endblock %}
