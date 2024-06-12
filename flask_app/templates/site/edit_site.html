@@ -18,7 +18,7 @@
         method="POST"
         novalidate="novalidate"
     >
-        {{ form.csrf_token }}
+    {{ form.csrf_token }}
         <p>
             {{ form.sitename.label }} {{ form.sitename(placeholder="サイト名", value=site.sitename) }}
         </p>
@@ -44,14 +44,17 @@
             <a href="{{ url_for('main.site_info', site_id=site.siteid) }}">キャンセル</a>
         </p>
     </form>
-    <p></p>
-    <form 
-        action="{{ url_for('main.delete_site', site_id=site.siteid) }}"
-        method="post"
-    >
-        <!-- {{ form.csrf_token }} -->
-        <input type="submit" value="削除">
-    </form>
+    {% if current == site.creator %}
+        <p>
+            <form 
+                action="{{ url_for('main.delete_site', site_id=site.siteid) }}"
+                method="post"
+            >
+                <input type="submit" value="削除">
+            </form>
+            </p>
+    {% endif %}
+
     <script>
         var site_id = "{{ site.siteid }}";
     </script>

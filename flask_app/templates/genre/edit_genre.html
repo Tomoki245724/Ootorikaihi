@@ -17,7 +17,7 @@
         method="POST"
         novalidate="novalidate"
     >
-        {{ form.csrf_token }}
+    {{ form.csrf_token }}
         <p>
             {{ form.genname.label }} {{ form.genname(placeholder="ジャンル名", value=genre.genname) }}
         </p>
@@ -27,6 +27,7 @@
         <br>
         <p><input type="submit" value="更新" /></p>
     </form>
+    {% if current == genre.creator %}
     <form 
         action="{{ url_for('main.delete_genre', genre_id=genre.genid) }}"
         method="post"
@@ -34,10 +35,11 @@
         <br>
         <br>
         <br>
-        <input type="submit-erase" value="削除">
+        <input type="submit" value="削除">
         <br>
-        <a href="{{url_for('main.genres')}}" class = "togray">ジャンル一覧へ</a>
     </form>
+    {% endif %}
+    <a href="{{url_for('main.genres')}}" class = "togray">ジャンル一覧へ</a>
 </div>
 </body>
 {% endblock %}

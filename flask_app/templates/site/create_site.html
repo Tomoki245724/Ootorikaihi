@@ -33,9 +33,8 @@
             {{ form.longitude.label }}{{ form.longitude }}
         </p>
         <div id="map"></div>
-        <p>{{ form.submit() }}</p>
+        <p>{{ form.submit() }}<a href="{{ url_for('main.genre_info', genre_id=genre.genid) }}">キャンセル</a></p>
     </form>
     <script type="module" src="{{ url_for('static', filename='js/create_site.js') }}"></script>
-    <a href="{{ url_for('main.genre_info', genre_id=genre.genid) }}">キャンセル</a>
 </body>
 {% endblock %}

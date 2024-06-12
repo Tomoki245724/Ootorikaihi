@@ -184,11 +184,12 @@ def dev_genre_info():
 def edit_genre(genre_id):
     form = CreateGenreForm()
     genre = Genre.query.filter_by(genid=genre_id).first()
+    current = int(current_user.get_id())
     if form.validate_on_submit():
         genre.genname = form.genname.data
         db.session.commit()
         return redirect(url_for("main.genres"))
-    return render_template("genre/edit_genre.html", genre=genre, form=form)
+    return render_template("genre/edit_genre.html", genre=genre, form=form, current=current)
 
 # ジャンル削除
 @main.route("/genre/<int:genre_id>/delete", methods=["POST"])
@@ -240,13 +241,14 @@ def edit_site(site_id):
     form = CreateSiteForm()
     site = Sitedata.query.filter_by(siteid=site_id).first()
     genre = Genre.query.filter_by(genid=site.category).first()
+    current = int(current_user.get_id())
     if form.validate_on_submit():
         site.sitename = form.sitename.data
         site.content = form.content.data
         site.coordinates = str(form.latitude.data) + "," + str(form.longitude.data)
         db.session.commit()
         return redirect(url_for("main.site_info", site_id=site_id))
-    return render_template("site/edit_site.html", form=form, genre=genre, site=site)
+    return render_template("site/edit_site.html", form=form, genre=genre, site=site, current=current)
 
 # サイト削除
 @main.route("/site/<int:site_id>/delete", methods=["POST"])
