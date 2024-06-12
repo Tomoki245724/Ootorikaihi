@@ -23,12 +23,14 @@
     position: fixed;
     top: 0;
     left: 0;
-    padding: 5px;
+    padding: 8px;
+    /*padding: 5px;*/
     margin: 15px;
     border: solid 1px #eee;
     border-radius: 6px;
+    cursor: pointer;
     color: #888;
-    background-color: rgba(252, 252, 252, 0.8);
+    background-color: rgba(252, 252, 252, 0.9);
 }
 
 
@@ -47,20 +49,35 @@
     .heading-box {
         width: 100%;
         height: 50px;
-        border-bottom: 1px solid #ddd ;
+        /*border-bottom: 1px solid #ddd ;*/
 
         .heading {
-            float: left;
-            padding: 10px 15px 4px 15px;
-            font-size: 24px;
-            color: #000;
-            vertical-align: bottom;
-            text-decoration:none;
-
-            &:hover {
-                color: #268bd2
+            /*display:block;*/
+            /*float: left;*/
+            padding: 10px 100px 10px 15px;
+            font-size: 20px;
+            /*vertical-align: bottom;*/
+            display:inline-block;
+            color: #fff;
+            background: #66cdaa;
+            margin-bottom: 10px;
+            font-weight: bold;
+            border-radius: 5px;
+            text-decoration: none;
+            opacity: 0.8;
+            cursor: pointer;
+                color: #fff/*#268bd2*/
+            }
+        .heading:focus {
+                border-color:#4d9980;
+            }
+        .heading:hover {
+            background: #4d9980;
+            /*color:#888;*/
+            opacity: 0.8;
             }
         }
+  
         
         .close-btn {
             float: right;
@@ -78,19 +95,28 @@
     .genre-list {
         margin: 15px 20px;
 
+        
+
         .list {
             margin-bottom: 10px;
             list-style: none;
 
             & p {
-                padding: 5px;
+                display:block;
+                color: #fff;
+                background: #28d;
+                opacity: 0.8;
+                padding: 5px 30px;
+                display: inline-block;
+                border-radius: 5px;
+                text-decoration: none;
                 margin-bottom: 5px;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.8);
+                /*border-bottom: 1px solid rgba(0, 0, 0, 0.8)*/
             }
 
             & li {
                 padding: 5px 10px;
-
+                cursor: pointer;
                 &:hover {
                     border-radius: 5px;
                     background-color: #eee;
@@ -99,7 +125,8 @@
             }
         }
     }
-}
+
+
 
 /* 拡大縮小ボタン */
 .zoom-btn {

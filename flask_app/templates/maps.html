@@ -13,20 +13,21 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="crossorigin=""></script>
 {% endblock %}
 
+
 {% block content %}
 <body>
     {% include "header.html" %}
     <span class="open-btn material-symbols-outlined">menu</span>
     <div class="sidebar">
         <div class="heading-box">
-            <a class="heading" href="{{ url_for('main.genres') }}">Genres</a>
+            <a class="heading" href="{{ url_for('main.genres') }}">ジャンル一覧</a>
             <div class="close-btn">
                 <span class="material-symbols-outlined">close</span>
             </div>
         </div>
         <ul class="genre-list">
             <div class="list show">
-                <p>表示</p>
+                <p>表示中</p>
                 {% for genre in genres %}
                 <li id="genre{{ genre.genid }}" class="genre">{{ genre.genname }}</li>
                 {% endfor %}
