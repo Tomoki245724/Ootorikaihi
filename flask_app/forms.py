@@ -57,3 +57,11 @@ class CreateSiteForm(FlaskForm):
     latitude = FloatField("緯度")
     longitude = FloatField("経度")
     submit = SubmitField("新規登録")
+
+
+class PostCommentForm(FlaskForm):
+    comment = StringField(
+        "新規コメント",
+        validators=[DataRequired("テキストは必須です。")],
+    )
+    submit = SubmitField("投稿")

@@ -27,12 +27,26 @@
         <li><img src="" /></li> <!-- 後で実装 -->
     <!-- {% endfor %} -->
     </ul>
-
-    <ul>
-        <!-- {% for comment in comments %} -->
-            <li></li>
-        <!-- {% endfor %} -->
-    </ul>
+    <h3>コメント</h3>
+    <form
+        action="{{url_for('main.post_comment', site_id=site.siteid)}}"
+        method="POST"
+        novalidate="novalidate"
+    >
+        {{ form.csrf_token }}
+        <p>
+            {{ form.comment.label }}
+            {{ form.comment(size=60) }} {{ form.submit() }}
+        </p>
+    </form>
+    <table>
+        {% for comment in comments %}
+            <tr>
+                <th>{{ comment.poster }} ： </th>
+                <th>{{ comment.content }}</th>
+            </tr>
+        {% endfor %}
+    </table>
     <script>
         var site_id = "{{ site.siteid }}";
     </script>
