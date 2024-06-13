@@ -12,53 +12,57 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 {% endblock %}
 <body>
-<h2>サイト情報編集</h2>
-    <form
-        action="{{ url_for('main.edit_site', site_id=site.siteid) }}"
-        method="POST"
-        novalidate="novalidate"
-    >
-    {{ form.csrf_token }}
-        <p>
-            {{ form.sitename.label }} {{ form.sitename(placeholder="サイト名", value=site.sitename) }}
-        </p>
-        {% for error in form.sitename.errors %}
-        <span style="color:red;">{{ error }}</span>
-        {% endfor %}
-        <p>
-            {{ form.content.label }} {{ form.content(value=site.content) }}
-        </p>
-        {% for error in form.content.errors %}
-        <span style="color:red;">{{ error }}</span>
-        {% endfor %}
-        <p>
-            {{ form.latitude.label }}{{ form.latitude }}
-            {{ form.longitude.label }}{{ form.longitude }}
-        </p>
-        {% for error in form.content.errors %}
-        <span style="color:red;">{{ error }}</span>
-        {% endfor %}
-        <div id="map"></div>
-        <p>
-            <input type="submit" value="更新" />
-            <a href="{{ url_for('main.site_info', site_id=site.siteid) }}">キャンセル</a>
-        </p>
-    </form>
-    {% if current == site.creator %}
-        <p>
-            <form 
-                action="{{ url_for('main.delete_site', site_id=site.siteid) }}"
-                method="post"
-            >
-            {{ form.csrf_token }}
-            <input type="submit" value="削除">
-            </form>
+    {% include "header.html" %}
+    <div class = "site">
+        <h2 class = "site-header">サイト情報編集</h2>
+        <form
+            action="{{ url_for('main.edit_site', site_id=site.siteid) }}"
+            method="POST"
+            novalidate="novalidate"
+        >
+        {{ form.csrf_token }}
+            <p>
+                {{ form.sitename.label }} {{ form.sitename(placeholder="サイト名", value=site.sitename) }}
             </p>
-    {% endif %}
+            {% for error in form.sitename.errors %}
+            <span style="color:red;">{{ error }}</span>
+            {% endfor %}
+            <p>
+                {{ form.content.label }} {{ form.content(value=site.content) }}
+            </p>
+            {% for error in form.content.errors %}
+            <span style="color:red;">{{ error }}</span>
+            {% endfor %}
+            <p>
+                {{ form.latitude.label }}{{ form.latitude }}
+                {{ form.longitude.label }}{{ form.longitude }}
+            </p>
+            {% for error in form.content.errors %}
+            <span style="color:red;">{{ error }}</span>
+            {% endfor %}
+            <div id="map"></div>
+            <p>
+                <input type="submit" value="更新" />
+                <br>
+                <a class = "togray" href="{{ url_for('main.site_info', site_id=site.siteid) }}">キャンセル</a>
+            </p>
+        </form>
+        {% if current == site.creator %}
+            <p>
+                <form 
+                    action="{{ url_for('main.delete_site', site_id=site.siteid) }}"
+                    method="post"
+                >
+                {{ form.csrf_token }}
+                <input type="submit" value="削除">
+                </form>
+                </p>
+        {% endif %}
 
-    <script>
-        var site_id = "{{ site.siteid }}";
-    </script>
-    <script type="module" src="{{ url_for('static', filename='js/edit_site.js') }}"></script>
+        <script>
+            var site_id = "{{ site.siteid }}";
+        </script>
+        <script type="module" src="{{ url_for('static', filename='js/edit_site.js') }}"></script>
+    </div>
 </body>
 {% endblock %}

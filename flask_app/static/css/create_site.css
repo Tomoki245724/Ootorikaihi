@@ -15,13 +15,6 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
-.genre {
-  width: 600px;
-  margin: 16px auto;
-  font-size: 16px;
-  
-}
-
 table { 
     border-collapse: collapse;
     border-spacing: 0;
@@ -73,10 +66,10 @@ table th,table td{
 .site input {
   box-sizing: border-box;
   display: block;
-  width: 100%;
+  /*width: 40%;*/
   border-width: 1px;
   border-style: solid;
-  padding: 16px;
+  padding: 10px 50px;
   outline: 0;
   font-family: inherit;
   font-size: 0.95em;
@@ -87,6 +80,8 @@ table th,table td{
   background: #66cdaa;
   border-color: transparent;
   color: #fff;
+  width: 30%;
+  padding: 15px 30px;
   cursor: pointer;
   border-radius: 10px;
 }
