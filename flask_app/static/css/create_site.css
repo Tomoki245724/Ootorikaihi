@@ -52,6 +52,30 @@ table th,table td{
   color: #fff;
   border-radius: 10px;
 }
+/*プチヘッダー*/
+.site-h3 {
+  background: #28d;
+  padding: 10px;
+  /*font-size: 1.4em;*/
+  font-weight: normal;
+  text-transform: uppercase;
+  color: #fff;
+  border-radius: 5px;
+  display:inline-block;
+  padding: 10px 50px;
+}
+/*プチプチヘッダー*/
+.site-h4 {
+  background: #778899;
+  padding: 10px;
+  /*font-size: 1.4em;*/
+  font-weight: normal;
+  text-transform: uppercase;
+  color: #fff;
+  border-radius: 5px;
+  display:inline-block;
+  padding: 3px 10px;
+}
 
 .site-container {
   background: #ebebeb;
@@ -83,7 +107,7 @@ table th,table td{
   width: 30%;
   padding: 15px 30px;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .site input[type="submit"]:hover {
@@ -137,25 +161,6 @@ a.togreen:focus {
   border-color:#4d9980;
 }
 
-/*各site,gerneへ　緑ボタン作る*/
-a.tonext{
-  display:block;
-  color: #fff;
-  background: #66cdaa;
-  padding: 10px 30px;
-  display: inline-block;
-  border-radius: 5px;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-a.tonext:hover {
-  background: #4d9980;
-}
-
-a.tonext:focus {
-  border-color:#4d9980;
-}
 
 /*地図へ戻る　一覧へ　aタグでback　グレーボタン*/
 a.togray{
@@ -174,6 +179,27 @@ a.togray:hover {
 }
 
 a.togray:focus {
+  border-color:#778899;
+}
+
+
+/*genreへ　aタグでback　小グレーボタン*/
+a.togenre{
+  display:block;
+  color: #fff;
+  background: #b0c4de;
+  padding: 3px 20px;
+  display: inline-block;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a.togenre:hover {
+  background: #778899;
+}
+
+a.togenre:focus {
   border-color:#778899;
 }
 
@@ -197,6 +223,25 @@ a.tonext:focus {
   border-color:#4d9980;
 }
 
+/*編集　小緑ボタン作る*/
+a.toedit{
+  display: block;
+  color: #fff;
+  background: #66cdaa;
+  padding: 3px 20px;
+  display: inline-block;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a.toedit:hover {
+  background: #4d9980;
+}
+
+a.toedit:focus {
+  border-color:#4d9980;
+}
 /*削除色用*/
 .site input[type="submit-erase"] {
   background: #b0c4de;
