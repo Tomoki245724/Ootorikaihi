@@ -14,11 +14,12 @@
 
 {% block content %}
 <body>
+    {% include "header.html" %}
     <div class = "site">
         <h2 class = "site-header">{{ site.sitename }}</h2>
-        <a class = "tonext" href="{{ url_for('main.edit_site', site_id=site.siteid) }}">編集</a>
-        <p>ジャンル: <a href="{{ url_for('main.genre_info', genre_id=genre.genid) }}">{{ genre.genname }}</a></p>
-        <p>座標: {{ site.coordinates }}</p>
+        <p>ジャンル: <a class = "togenre" href="{{ url_for('main.genre_info', genre_id=genre.genid) }}">{{ genre.genname }}</a>
+        <a class = "toedit" href="{{ url_for('main.edit_site', site_id=site.siteid) }}">編集</a></p>
+        <!--<p>座標: {{ site.coordinates }}</p>-->
         <div id="map"></div>
         <p>{{ site.content }}</p>
         <img src="" /> <!-- 後で実装 -->
@@ -28,7 +29,7 @@
             <li><img src="" /></li> <!-- 後で実装 -->
         <!-- {% endfor %} -->
         </ul>
-        <h3>コメント</h3>
+        <h3 class = "site-h3">コメント</h3>
         <form
             action="{{url_for('main.post_comment', site_id=site.siteid)}}"
             method="POST"
@@ -37,13 +38,15 @@
             {{ form.csrf_token }}
             <p>
                 {{ form.comment.label }}
-                {{ form.comment(size=60) }} {{ form.submit() }}
+                {{ form.comment(size=60) }}
+                <br>
+                {{ form.submit() }}
             </p>
         </form>
         <table>
             {% for comment in comments %}
                 <tr>
-                    <th>{{ comment.poster }} ： </th>
+                    <th>{{ comment.poster }} ： </tr>
                     <th>{{ comment.content }}</th>
                 </tr>
             {% endfor %}
@@ -52,6 +55,7 @@
             var site_id = "{{ site.siteid }}";
         </script>
         <script type="module" src="{{ url_for('static', filename='js/site_info.js') }}"></script>
+        <a href="{{url_for('main.genres')}}" class = "togray">ジャンル一覧へ</a>
     </div>
 </body>
 {% endblock %}

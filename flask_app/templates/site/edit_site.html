@@ -22,7 +22,7 @@
         >
         {{ form.csrf_token }}
             <p>
-                {{ form.sitename.label }} {{ form.sitename(placeholder="サイト名", value=site.sitename) }}
+                {{ form.sitename.label }} {{ form.sitename(placeholder="サイト名", value=site.sitename,size=30) }}
             </p>
             {% for error in form.sitename.errors %}
             <span style="color:red;">{{ error }}</span>
@@ -34,8 +34,8 @@
             <span style="color:red;">{{ error }}</span>
             {% endfor %}
             <p>
-                {{ form.latitude.label }}{{ form.latitude }}
-                {{ form.longitude.label }}{{ form.longitude }}
+                {{ form.latitude.label }}{{ form.latitude(size =30, placeholder="地点をクリックで更新できます") }}
+                {{ form.longitude.label }}{{ form.longitude(size =30, placeholder="地点をクリックで更新できます") }}
             </p>
             {% for error in form.content.errors %}
             <span style="color:red;">{{ error }}</span>
