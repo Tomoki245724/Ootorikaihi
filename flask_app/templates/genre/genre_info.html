@@ -19,6 +19,7 @@
     <ul>
     {% for site in sites %}
         <a href="{{ url_for('main.site_info', site_id=site.siteid) }}" class = "tonext">{{ site.sitename }}</a>
+        <br>
     {% endfor %}
     </ul>
     <a href="{{url_for('main.genres')}}" class = "togray">ジャンル一覧へ</a>
