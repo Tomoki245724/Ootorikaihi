@@ -22,6 +22,7 @@
             action="{{url_for('main.create_site', genre_id=genre.genid)}}"
             method="POST"
             novalidate="novalidate"
+            enctype="multipart/form-data"
         >
     
             {{ form.csrf_token }}
@@ -39,11 +40,17 @@
             </p>
             <div id="map"></div>
             <p>
+                {{ form.image.label }}
+                {{ form.image(id="upload-image") }}
+            </p>
+            <img id="preview" src="" />
+            <p>
                 {{ form.submit() }}
                 <br>
                 <a class = 'togray' href="{{ url_for('main.genre_info', genre_id=genre.genid) }}">キャンセル</a>
             </p>
         </form>
+        <script>var genId = "{{ genre.genid }}"</script>
         <script type="module" src="{{ url_for('static', filename='js/create_site.js') }}"></script>
     </div>
 </body>

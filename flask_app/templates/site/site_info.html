@@ -18,13 +18,14 @@
     <br>
     <div class = "site">
         <h2 class = "site-header">{{ site.sitename }}</h2>
-        <p>ジャンル: <a class = "togenre" href="{{ url_for('main.genre_info', genre_id=genre.genid) }}">{{ genre.genname }}</a>
-        <a class = "toedit" href="{{ url_for('main.edit_site', site_id=site.siteid) }}">編集</a></p>
+        <p>座標: {{ site.coordinates }}</p>
+        <p><a class = "toedit" href="{{ url_for('main.edit_site', site_id=site.siteid) }}">編集</a></p>
         <!--<p>座標: {{ site.coordinates }}</p>-->
         <div id="map"></div>
         <p>{{ site.content }}</p>
-        <img src="" /> <!-- 後で実装 -->
-
+        {% if main_picture_path %} 
+            <img id="main-image" src="{{ url_for('static', filename='images/uploaded_images/' + main_picture_path) }}" />
+        {% endif %}
         <ul>
         <!-- {% for picture in pictures %} -->
             <li><img src="" /></li> <!-- 後で実装 -->
@@ -45,6 +46,7 @@
             </p>
         </form>
         <br>コメント一覧<br>
+        {% if comments %}
         <table>
             {% for comment in comments %}
                 <tr>
@@ -52,12 +54,16 @@
                 </tr>
             {% endfor %}
         </table>
+        {% else %}
+            <p>コメントはまだありません。</p>
+        {% endif%}
+
         <script>
             var site_id = "{{ site.siteid }}";
         </script>
         <script type="module" src="{{ url_for('static', filename='js/site_info.js') }}"></script>
         <br>
-        <a href="{{url_for('main.genres')}}" class = "togray">ジャンル一覧へ</a>
+        <a href="{{ url_for('main.genre_info', genre_id=genre.genid) }}" class = "togray">ジャンル詳細へ</a>
     </div>
 </body>
 {% endblock %}
