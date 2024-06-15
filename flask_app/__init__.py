@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect
 from flask_migrate import Migrate
 from flask_login import LoginManager
+from flask_httpauth import HTTPBasicAuth
 
 from flask_app.config import config
 
@@ -13,6 +14,16 @@ csrf = CSRFProtect()
 login_manager = LoginManager()
 login_manager.login_view = "main.signup"
 login_manager.login_message = ""
+
+auth = HTTPBasicAuth()
+
+users = {
+    "user": "password",
+}
+
+@auth.get_password
+def get_pw(username):
+    return users.get(username) if username in users else None
 
 def create_app(config_key):
     app = Flask(__name__)

@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, request, jsonify
 from flask_login import login_user, logout_user, login_required, current_user
-from flask_app import db
+from flask_app import db, auth
 from flask_app.forms import SignUpForm, LoginForm, CreateGenreForm, CreateSiteForm, PostCommentForm
 from flask_app.models import User, Genre, Sitedata, Comment, Picture
 
@@ -13,13 +13,15 @@ main = Blueprint(
 
 # メインの地図のページ
 @main.route("/")
-# @login_required # 開発時には面倒だからコメントアウトしておく
+@login_required
+@auth.login_required
 def maps():
     genres = Genre.query.all()
     Users = User.query.all()
     return render_template("maps.html", genres=genres)
 
 @main.route("/data")
+@auth.login_required
 def get_data():
     sites = Sitedata.query.all()
     data = []
@@ -36,6 +38,7 @@ def get_data():
     return json_data
 
 @main.route("/data/<int:site_id>")
+@auth.login_required
 def get_sitedata(site_id):
     site = Sitedata.query.filter_by(siteid=site_id).first()
     category_id = site.category
@@ -50,6 +53,7 @@ def get_sitedata(site_id):
     return json_data
 
 @main.route("/genres_data")
+@auth.login_required
 def get_genre_data():
     genres = Genre.query.all()
     data = []
@@ -63,6 +67,7 @@ def get_genre_data():
 
 # サインアップページ
 @main.route("/signup", methods=["GET", "POST"])
+@auth.login_required
 def signup():
     form = SignUpForm()
     if form.validate_on_submit():
@@ -90,6 +95,7 @@ def signup():
 
 # ログインページ
 @main.route("/login", methods=["GET", "POST"])
+@auth.login_required
 def login():
     form = LoginForm()
     if form.validate_on_submit():
@@ -104,6 +110,7 @@ def login():
 
 # ログアウトする時に用いる
 @main.route("/logout")
+@auth.login_required
 def logout():
     logout_user()
     return redirect(url_for("main.login"))
@@ -111,6 +118,7 @@ def logout():
 # ユーザ一覧 開発用
 @main.route("/users")
 @login_required
+@auth.login_required
 def users():
     users = db.session.query(User).all()
     return render_template("users.html", users=users)
@@ -118,6 +126,7 @@ def users():
 # ユーザ情報編集
 @main.route("/users/<int:user_id>", methods=["GET", "POST"])
 @login_required
+@auth.login_required
 def edit_user(user_id):
     form = SignUpForm()
     user = User.query.filter_by(id=user_id).first()
@@ -132,6 +141,7 @@ def edit_user(user_id):
 # ユーザ削除
 @main.route("/users/<int:user_id>/delete", methods=["POST"])
 @login_required
+@auth.login_required
 def delete_user(user_id):
     user = db.session.query(User).filter_by(id=user_id).first()
     db.session.delete(user)
@@ -141,6 +151,7 @@ def delete_user(user_id):
 # ジャンル一覧 開発用？
 @main.route("/genres")
 @login_required
+@auth.login_required
 def genres():
     genres = db.session.query(Genre).all()
     return render_template("genre/genres.html", genres=genres)
@@ -148,6 +159,7 @@ def genres():
 # ジャンル作成ページ
 @main.route("/create_genre", methods=["GET", "POST"])
 @login_required
+@auth.login_required
 def create_genre():
     form = CreateGenreForm()
     if form.validate_on_submit():
@@ -167,6 +179,7 @@ def create_genre():
 # ジャンル情報
 @main.route("/genre/<int:genre_id>", methods=["GET"])
 @login_required
+@auth.login_required
 def genre_info(genre_id):
     genre = Genre.query.filter_by(genid=genre_id).first()
     sites = Sitedata.query.filter_by(category=genre_id).all()
@@ -175,12 +188,14 @@ def genre_info(genre_id):
 
 # ジャンル情報（開発用）
 @main.route("/genre/dev", methods=["GET"])
+@auth.login_required
 def dev_genre_info():
     return render_template("genre/dev_genre_info.html")
 
 # ジャンル情報編集
 @main.route("/edit_genre/<int:genre_id>", methods=["GET", "POST"])
 @login_required
+@auth.login_required
 def edit_genre(genre_id):
     form = CreateGenreForm()
     genre = Genre.query.filter_by(genid=genre_id).first()
@@ -194,6 +209,7 @@ def edit_genre(genre_id):
 # ジャンル削除
 @main.route("/genre/<int:genre_id>/delete", methods=["POST"])
 @login_required
+@auth.login_required
 def delete_genre(genre_id):
     genre = db.session.query(Genre).filter_by(genid=genre_id).first()
     sites = db.session.query(Sitedata).filter_by(category=genre_id).all()
@@ -205,7 +221,8 @@ def delete_genre(genre_id):
 
 # サイト作成ページ
 @main.route("/create_site/<int:genre_id>", methods=["GET", "POST"])
-# @login_required
+@login_required
+@auth.login_required
 def create_site(genre_id):
     genre = db.session.query(Genre).filter_by(genid=genre_id).first()
     form = CreateSiteForm()
@@ -227,7 +244,8 @@ def create_site(genre_id):
 
 # サイト情報
 @main.route("/site/<int:site_id>", methods=["GET"])
-# @login_required
+@login_required
+@auth.login_required
 def site_info(site_id):
     site = Sitedata.query.filter_by(siteid=site_id).first()
     genre = Genre.query.filter_by(genid=site.category).first()
@@ -240,6 +258,7 @@ def site_info(site_id):
 # サイト情報編集
 @main.route("/edit_site/<int:site_id>", methods=["GET", "POST"])
 @login_required
+@auth.login_required
 def edit_site(site_id):
     form = CreateSiteForm()
     site = Sitedata.query.filter_by(siteid=site_id).first()
@@ -256,6 +275,7 @@ def edit_site(site_id):
 # サイト削除
 @main.route("/site/<int:site_id>/delete", methods=["POST"])
 @login_required
+@auth.login_required
 def delete_site(site_id):
     site = db.session.query(Sitedata).filter_by(siteid=site_id).first()
     genre = db.session.query(Genre).filter_by(genid=site.category).first()
@@ -267,6 +287,7 @@ def delete_site(site_id):
 # コメント投稿
 @main.route("/site/<int:site_id>/comment", methods=["POST"])
 @login_required
+@auth.login_required
 def post_comment(site_id):
     site = Sitedata.query.filter_by(siteid=site_id).first()
     genre = Genre.query.filter_by(genid=site.category).first()
