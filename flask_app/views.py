@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, request, jsonify
 from flask_login import login_user, logout_user, login_required, current_user
 from flask_app import db
-from flask_app.forms import SignUpForm, LoginForm, CreateGenreForm, CreateSiteForm
-from flask_app.models import User, Genre, Sitedata
+from flask_app.forms import SignUpForm, LoginForm, CreateGenreForm, CreateSiteForm, PostCommentForm
+from flask_app.models import User, Genre, Sitedata, Comment, Picture
 
 main = Blueprint(
     "main",
@@ -232,7 +232,10 @@ def site_info(site_id):
     site = Sitedata.query.filter_by(siteid=site_id).first()
     genre = Genre.query.filter_by(genid=site.category).first()
     creator = User.query.filter_by(id=genre.creator).first()
-    return render_template("site/site_info.html",  site=site, genre=genre, creator=creator)
+    comments = Comment.query.filter_by(siteid=site_id).all()
+    posters = User.query.all()
+    form = PostCommentForm()
+    return render_template("site/site_info.html",  site=site, genre=genre, creator=creator, comments=comments, form=form)
 
 # サイト情報編集
 @main.route("/edit_site/<int:site_id>", methods=["GET", "POST"])
@@ -260,3 +263,26 @@ def delete_site(site_id):
     genre.pins += -1
     db.session.commit()
     return redirect(url_for("main.genre_info", genre_id=site.category))
+
+# コメント投稿
+@main.route("/site/<int:site_id>/comment", methods=["POST"])
+@login_required
+def post_comment(site_id):
+    site = Sitedata.query.filter_by(siteid=site_id).first()
+    genre = Genre.query.filter_by(genid=site.category).first()
+    creator = User.query.filter_by(id=genre.creator).first()
+    comments = Comment.query.filter_by(siteid=site_id).all()
+    user = User.query.filter_by(id=current_user.get_id()).first()
+    form = PostCommentForm()
+    if form.validate_on_submit():
+        comment = Comment(
+            poster=user.username,
+            siteid=site_id,
+            content=form.comment.data
+        )
+        db.session.add(comment)
+        db.session.commit()
+
+        return redirect(url_for("main.site_info", site_id=site.siteid))
+
+    return render_template("site/site_info.html",  site=site, genre=genre, creator=creator, comments=comments)

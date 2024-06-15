@@ -5,3 +5,258 @@
     border: 2px solid #000;
     border-radius: 5px;
 }
+
+h2{color:white}
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
+
+body {
+  background:   #f0f8ff;
+  font-family: 'Open Sans', sans-serif;
+}
+
+table { 
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+}
+
+table tr{
+    border-bottom: solid 1px #eee;
+    cursor: pointer;
+}
+  
+table tr:hover{
+    background-color: #d4f0fd;
+}
+  
+table th,table td{
+    text-align: center;
+    width: 25%;
+    padding: 15px 0;
+}
+
+/* Reset top and bottom margins from certain elements */
+.site-tytle,
+.site p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.site-header {
+  background: #28d;
+  padding: 20px;
+  font-size: 1.4em;
+  font-weight: normal;
+  text-transform: uppercase;
+  color: #fff;
+  border-radius: 10px;
+}
+/*プチヘッダー*/
+.site-h3 {
+  background: #28d;
+  padding: 10px;
+  /*font-size: 1.4em;*/
+  font-weight: normal;
+  text-transform: uppercase;
+  color: #fff;
+  border-radius: 5px;
+  display:inline-block;
+  padding: 10px 50px;
+}
+/*プチプチヘッダー*/
+.site-h4 {
+  background: #778899;
+  padding: 10px;
+  /*font-size: 1.4em;*/
+  font-weight: normal;
+  text-transform: uppercase;
+  color: #fff;
+  border-radius: 5px;
+  display:inline-block;
+  padding: 3px 10px;
+}
+
+.site-container {
+  background: #ebebeb;
+  padding: 12px;
+}
+
+/* Every row inside .login-container is defined with p tags */
+.site p {
+  padding: 8px 0px;
+}
+
+.site input {
+  box-sizing: border-box;
+  display: block;
+  /*width: 40%;*/
+  border-width: 1px;
+  border-style: solid;
+  padding: 10px 50px;
+  outline: 0;
+  font-family: inherit;
+  font-size: 0.95em;
+}
+
+/*submit*/
+.site input[type="submit"] {
+  background: #66cdaa;
+  border-color: transparent;
+  color: #fff;
+  width: 30%;
+  padding: 15px 30px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.site input[type="submit"]:hover {
+  background: #4d9980;
+}
+
+/* Buttons' focus effect */
+.site input[type="submit"]:focus {
+  border-color: #05a;
+}
+
+
+/*「ジャンル新規作成」　黄緑ボタン作る*/
+a.tonew{
+  display:block;
+  color: #fff;
+  background: #88cc66;
+  padding: 10px 30px;
+  display: inline-block;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a.tonew:hover {
+  background: #66994d ;
+}
+
+a.tonew:focus {
+  border-color:#66994d ;
+}
+
+
+/*「ジャンル情報編集」　緑ボタン作る*/
+a.togreen{
+  display:block;
+  color: #fff;
+  background: #66cdaa;
+  padding: 10px 30px;
+  display: inline-block;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a.togreen:hover {
+  background: #4d9980;
+}
+
+a.togreen:focus {
+  border-color:#4d9980;
+}
+
+
+/*地図へ戻る　一覧へ　aタグでback　グレーボタン*/
+a.togray{
+  display:block;
+  color: #fff;
+  background: #b0c4de;
+  padding: 10px 30px;
+  display: inline-block;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a.togray:hover {
+  background: #778899;
+}
+
+a.togray:focus {
+  border-color:#778899;
+}
+
+
+/*genreへ　aタグでback　小グレーボタン*/
+a.togenre{
+  display:block;
+  color: #fff;
+  background: #b0c4de;
+  padding: 3px 20px;
+  display: inline-block;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a.togenre:hover {
+  background: #778899;
+}
+
+a.togenre:focus {
+  border-color:#778899;
+}
+
+/*各site,gerneへ　緑ボタン作る*/
+a.tonext{
+  display: block;
+  color: #fff;
+  background: #66cdaa;
+  padding: 10px 30px;
+  display: inline-block;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a.tonext:hover {
+  background: #4d9980;
+}
+
+a.tonext:focus {
+  border-color:#4d9980;
+}
+
+/*編集　小緑ボタン作る*/
+a.toedit{
+  display: block;
+  color: #fff;
+  background: #66cdaa;
+  padding: 3px 20px;
+  display: inline-block;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a.toedit:hover {
+  background: #4d9980;
+}
+
+a.toedit:focus {
+  border-color:#4d9980;
+}
+/*削除色用*/
+.site input[type="submit-erase"] {
+  background: #b0c4de;
+  border-color: transparent;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 5px;
+  width: 200px;
+}
+
+.site input[type="submit-erase"]:hover {
+  background: #cc6688;
+}
+
+.site input[type="submit-erase"]:focus {
+  border-color:#b0c4de;
+}

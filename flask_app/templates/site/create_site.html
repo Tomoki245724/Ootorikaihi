@@ -13,28 +13,37 @@
 
 {% block content %}
 <body>
-    <h2>サイト新規作成 （{{ genre.genname }}）</h2>
-    <form
-        action="{{url_for('main.create_site', genre_id=genre.genid)}}"
-        method="POST"
-        novalidate="novalidate"
-    >
-        {{ form.csrf_token }}
-        <p>
-            {{ form.sitename.label }}
-            {{ form.sitename(size=30, placeholder="サイト名") }}
-        </p>
-        <p>
-            {{ form.content.label }}
-            {{ form.content }}
-        </p>
-        <p>
-            {{ form.latitude.label }}{{ form.latitude }}
-            {{ form.longitude.label }}{{ form.longitude }}
-        </p>
-        <div id="map"></div>
-        <p>{{ form.submit() }}<a href="{{ url_for('main.genre_info', genre_id=genre.genid) }}">キャンセル</a></p>
-    </form>
-    <script type="module" src="{{ url_for('static', filename='js/create_site.js') }}"></script>
+    {% include "header.html" %}
+    <div class = "site">
+        <h2 class = "site-header">サイト新規作成 （{{ genre.genname }}）</h2>
+
+        <form
+            action="{{url_for('main.create_site', genre_id=genre.genid)}}"
+            method="POST"
+            novalidate="novalidate"
+        >
+    
+            {{ form.csrf_token }}
+            <p>
+                {{ form.sitename.label }}
+                {{ form.sitename(size=30, placeholder="サイト名") }}
+            </p>
+            <p>
+                {{ form.content.label }}
+                {{ form.content(size=30, placeholder="場所の詳細やその他情報") }}
+            </p>
+            <p>
+                {{ form.latitude.label }}{{ form.latitude(size=30, placeholder="地点をクリックで入力できます") }}
+                {{ form.longitude.label }}{{ form.longitude(size=30, placeholder="地点をクリックで入力できます") }}
+            </p>
+            <div id="map"></div>
+            <p>
+                {{ form.submit() }}
+                <br>
+                <a class = 'togray' href="{{ url_for('main.genre_info', genre_id=genre.genid) }}">キャンセル</a>
+            </p>
+        </form>
+        <script type="module" src="{{ url_for('static', filename='js/create_site.js') }}"></script>
+    </div>
 </body>
 {% endblock %}
