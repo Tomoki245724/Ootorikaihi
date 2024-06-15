@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import PasswordField, StringField, SubmitField, TextAreaField, FloatField
 from wtforms.validators import DataRequired, Email, Length
+from flask_wtf.file import FileField, FileAllowed
 
 class SignUpForm(FlaskForm):
     username = StringField(
@@ -56,6 +57,12 @@ class CreateSiteForm(FlaskForm):
     # coordinates = StringField("座標")
     latitude = FloatField("緯度")
     longitude = FloatField("経度")
+    image = FileField(
+        "写真",
+        validators=[
+            FileAllowed(['jpg', 'jpeg', 'png'], '画像ファイル（JPG、JPEG、PNG）のみアップロード可能です。')
+        ]
+    )
     submit = SubmitField("新規登録")
 
 

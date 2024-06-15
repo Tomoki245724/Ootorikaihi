@@ -1,5 +1,7 @@
-from flask import Blueprint, render_template, flash, redirect, url_for, request, jsonify
+import os
+from flask import Blueprint, render_template, flash, redirect, url_for, request, jsonify, current_app
 from flask_login import login_user, logout_user, login_required, current_user
+from werkzeug.utils import secure_filename
 from flask_app import db, auth
 from flask_app.forms import SignUpForm, LoginForm, CreateGenreForm, CreateSiteForm, PostCommentForm
 from flask_app.models import User, Genre, Sitedata, Comment, Picture
@@ -227,6 +229,7 @@ def create_site(genre_id):
     genre = db.session.query(Genre).filter_by(genid=genre_id).first()
     form = CreateSiteForm()
     if form.validate_on_submit():
+
         site = Sitedata(
             sitename=form.sitename.data,
             category=genre_id,
@@ -234,8 +237,29 @@ def create_site(genre_id):
             coordinates=str(form.latitude.data) + "," + str(form.longitude.data),
             creator=current_user.get_id()
         )
-        genre.pins += 1
         db.session.add(site)
+        db.session.flush()
+        current_app.logger.debug('##########デバッグメッセージ')
+        current_app.logger.debug(form.image)
+        current_app.logger.debug(form.image.data)
+        current_app.logger.debug(os.path.join(current_app.config['UPLOAD_FOLDER'], "test1.jpg"))
+
+        if form.image.data:
+            image = form.image.data
+            extension = os.path.splitext(image.filename)[1]
+            filename = f"site{site.siteid}{extension}"
+            image_path = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
+            os.makedirs(os.path.dirname(image_path), exist_ok=True)
+            image.save(image_path)
+            current_app.logger.debug('デバッグメッセージ1')
+            picture = Picture(
+                poster = current_user.id,
+                siteid = site.siteid,
+                path = filename,
+            )
+            db.session.add(picture)
+
+        genre.pins += 1
         db.session.commit()
 
         return redirect(url_for("main.genre_info", genre_id=genre.genid))
@@ -252,8 +276,13 @@ def site_info(site_id):
     creator = User.query.filter_by(id=genre.creator).first()
     comments = Comment.query.filter_by(siteid=site_id).all()
     posters = User.query.all()
+    main_picture = Picture.query.filter_by(siteid=site_id).first()
+    if (main_picture):
+        main_picture_path = main_picture.path
+    else:
+        main_picture_path = ""
     form = PostCommentForm()
-    return render_template("site/site_info.html",  site=site, genre=genre, creator=creator, comments=comments, form=form)
+    return render_template("site/site_info.html",  site=site, genre=genre, creator=creator, comments=comments, main_picture_path=main_picture_path, form=form)
 
 # サイト情報編集
 @main.route("/edit_site/<int:site_id>", methods=["GET", "POST"])

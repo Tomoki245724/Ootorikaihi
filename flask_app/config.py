@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 basedir = Path(__file__).parent.parent
@@ -5,6 +6,7 @@ basedir = Path(__file__).parent.parent
 class BaseConfig:
     SECRET_KEY = "secret key"
     WTF_CSRF_SECRET_KEY = "secret key"
+    UPLOAD_FOLDER = os.path.join(basedir, "flask_app/static/images/uploaded_images")
 
 class LocalConfig(BaseConfig):
     SQLALCHEMY_DATABASE_URI = f"sqlite:///{basedir / 'local.sqlite'}"
