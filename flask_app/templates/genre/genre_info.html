@@ -11,18 +11,19 @@
     {% include "header.html" %}
 <div class="genre">
     <h2 class = "genre-header">{{ genre.genname }}</h2>
-    <a href="{{url_for('main.edit_genre', genre_id=genre.genid)}}" class = "togreen">ジャンル情報編集</a>
-    <a href="{{url_for('main.create_site', genre_id=genre.genid)}}" class = "tonew">地点の追加</a>
-    <p>{{ genre.caption }}</p>
+    <p>説明：{{ genre.caption }}</p>
     <p style = "color:#696969">作成者：{{ creator.username }}</p>
-
+    <p><a href="{{url_for('main.edit_genre', genre_id=genre.genid)}}" class = "togreen">ジャンル情報編集</a></p>
+    <hr>
+    <br>
+    <p><a href="{{url_for('main.create_site', genre_id=genre.genid)}}" class = "tonew">地点の追加</a></p>
+    <br>登録済みの地点<br>
     <ul>
     {% for site in sites %}
-        <a href="{{ url_for('main.site_info', site_id=site.siteid) }}" class = "tonext">{{ site.sitename }}</a>
-        <br>
+        <li><a href="{{ url_for('main.site_info', site_id=site.siteid) }}" class = "tonext">{{ site.sitename }}</a></li>
     {% endfor %}
     </ul>
-    <a href="{{url_for('main.genres')}}" class = "togray">ジャンル一覧へ</a>
+    <a href="{{url_for('main.genres')}}" class = "togray fixed-bottom">ジャンル一覧へ</a>
 </div>
 </body>
 {% endblock %}
