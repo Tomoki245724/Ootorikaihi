@@ -16,7 +16,14 @@ class TestingConfig(BaseConfig):
     SQLALCHEMY_TRACK_MODIFICATION = False
     WTF_CSRF_ENABLED = False
 
+class ProductionConfig(BaseConfig):
+    SQLALCHEMY_DATABASE_URI = f"sqlite:///{basedir / 'local.sqlite'}"
+    SQLALCHEMY_TRACK_MODIFICATION = False
+    SQLALCHEMY_ECHO = False
+    DEBUG = False
+
 config = {
     "testing": TestingConfig,
     "local": LocalConfig,
+    "production": ProductionConfig,
 }
