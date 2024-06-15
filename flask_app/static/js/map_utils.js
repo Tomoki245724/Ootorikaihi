@@ -37,12 +37,14 @@ function addMarker(addTo, latLng, sitename, siteid, categoryname, categoryid) {
         shadowSize: [41, 41],
         className: `icon-${ categoryid }`,
     });
+    var coordinates = latLng[0].toString() + "," + latLng[1].toString();
     var marker = L.marker(latLng, {icon: customIcon}).addTo(addTo);
     var popup = L.popup({
         closeButton: false,
         className: "custom-popup",
     }).setContent(
-        `<a href="../site/${siteid}">${ sitename }</a><span>${ categoryname }</span>`
+        `<p><a href="../site/${siteid}">${ sitename }</a><span>${ categoryname }</span></p>
+        <p><a href="https://www.google.co.jp/maps/place/${coordinates}">GoogleMapsへ</a></p>`
     );
     marker.bindPopup(popup);
 }

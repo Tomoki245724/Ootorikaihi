@@ -19,6 +19,7 @@
     <div class = "site">
         <h2 class = "site-header">{{ site.sitename }}</h2>
         <p>座標: {{ site.coordinates }}</p>
+        <p><a href="https://www.google.co.jp/maps/place/{{ site.coordinates }}" >GoogleMapsへ</a></p>
         <p><a class = "toedit" href="{{ url_for('main.edit_site', site_id=site.siteid) }}">編集</a></p>
         <!--<p>座標: {{ site.coordinates }}</p>-->
         <div id="map"></div>
