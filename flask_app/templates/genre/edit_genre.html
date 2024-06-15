@@ -24,6 +24,10 @@
         {% for error in form.genname.errors %}
         <span style="color:red;">{{ error }}</span>
         {% endfor %}
+        <p>
+            {{ form.caption.label }}
+            {{ form.caption(placeholder="ジャンルについての説明",value=genre.caption) }}
+        </p>
         <br>
         <p><input type="submit" value="更新" /></p>
     </form>
@@ -35,7 +39,7 @@
         {{ form.csrf_token }}
         <br>
         <br>
-        <input type="submit-erase" value="削除">
+        <p><input type="submit" class = "submit-erase" value="削除"></p>
         <br>
     </form>
     {% endif %}
