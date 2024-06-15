@@ -222,6 +222,26 @@ background: #4d9980;
 a.toedit:focus {
 border-color:#4d9980;
 }
+
+/*siteinfoからgenreへ　小灰ボタン作る*/
+a.togenre{
+  display: block;
+  color: #fff;
+  background: #b0c4de;
+  padding: 3px 20px;
+  display: inline-block;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a.togenre:hover {
+  background: #778899;
+}
+
+a.togenre:focus {
+  border-color:#b0c4de;
+}
 /*削除色用*/
 .site input[type="submit-erase"] {
 background: #b0c4de;
