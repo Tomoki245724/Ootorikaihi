@@ -20,10 +20,13 @@
     <span class="open-btn material-symbols-outlined">menu</span>
     <div class="sidebar">
         <div class="heading-box">
-            <a class="heading" href="{{ url_for('main.genres') }}">ジャンル一覧</a>
+            <!-- ユーザ情報
+            <a class="heading-user" href="{{ url_for('main.users') }}">ユーザ情報</a>
+            ユーザ情報-->
             <div class="close-btn">
                 <span class="material-symbols-outlined">close</span>
             </div>
+            <a class="heading" href="{{ url_for('main.genres') }}">ジャンル一覧</a>
         </div>
         <ul class="genre-list">
             <div class="list show">
