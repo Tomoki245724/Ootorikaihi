@@ -3,7 +3,7 @@ h2{color:tomato}
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
 
 body {
-  background: #e0ffff;
+  background:  #f0f8ff;
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -103,22 +103,66 @@ body {
   border-color:#05a;
 }
 
+/*各usereditへ　緑ボタン作る*/
+a.tonext{
+  display:block;
+  color: #fff;
+  background: #66cdaa;
+  padding: 3px 13px;
+  display: inline-block;
+  border-radius: 5px;
+  text-decoration: none;
+  margin:5px;
+  cursor: pointer;
+}
+
+a.tonext:hover {
+  background: #4d9980;
+}
+
+a.tonext:focus {
+  border-color:#4d9980;
+}
 
 /*削除色用*/
-.login input[type="submit-erase"] {
+.login input.submit-erase {
+  display: inline-block;
   background: #b0c4de;
   border-color: transparent;
   color: #fff;
   cursor: pointer;
+  width: 24%;
   text-align: center;
+  border-radius: 5px;
+  padding: 10px 30px;
 }
 
-.login input[type="submit-erase"]:hover {
+.login input.submit-erase:hover {
   background: #cc6688;
 }
 
-.login input[type="submit-erase"]:focus {
-  border-color:#cc6688;
+.login input.submit-erase:focus {
+  border-color:#b0c4de;
+}
+
+/*「ユーザ新規作成」　黄緑ボタン作る*/
+a.tonew{
+  display:block;
+  color: #fff;
+  background: #88cc66;
+  padding: 10px 30px;
+  display: inline-block;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a.tonew:hover {
+  background: #66994d ;
+}
+
+a.tonew:focus {
+  border-color:#66994d ;
 }
 
 
@@ -136,9 +180,28 @@ body {
 }
 
 .login a.change:hover {
-  background: #20b2aa;
+  background: #4d9980;
 }
 
 .login a.change:focus {
-  border-color:#20b2aa;
+  border-color:#4d9980;
+}
+
+/*地図へ戻る　一覧へ　aタグでback　グレーボタン*/
+a.togray{
+  display: inline-block;
+  color: #fff;
+  background: #b0c4de;
+  padding: 10px 30px;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a.togray:hover {
+  background: #778899;
+}
+
+a.togray:focus {
+  border-color:#778899;
 }

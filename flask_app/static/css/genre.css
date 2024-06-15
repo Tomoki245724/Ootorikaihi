@@ -90,7 +90,7 @@ table th,table td{
 
 /* Buttons' focus effect */
 .genre input[type="submit"]:focus {
-  border-color: #05a;
+  border-color: #4d9980;
 }
 
 
@@ -197,20 +197,22 @@ a.tonext:focus {
 }
 
 /*削除色用*/
-.genre input[type="submit-erase"] {
+.genre input.submit-erase {
+  display: inline-block;
   background: #b0c4de;
   border-color: transparent;
   color: #fff;
   cursor: pointer;
+  width: 29%;
   text-align: center;
   border-radius: 5px;
-  width: 200px;
+  padding: 10px 30px;
 }
 
-.genre input[type="submit-erase"]:hover {
+.genre input.submit-erase:hover {
   background: #cc6688;
 }
 
-.genre input[type="submit-erase"]:focus {
+.genre input.submit-erase:focus {
   border-color:#b0c4de;
 }
