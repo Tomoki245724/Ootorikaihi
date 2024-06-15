@@ -1,6 +1,6 @@
 import { makeMap } from "./map_utils.js";
 
-function addMarker() {
+function makeMapAndOneMarker() {
     var dataUrl = `/data/${site_id}`;
 
     $.ajaxSetup({async: false});
@@ -13,13 +13,6 @@ function addMarker() {
             var map = makeMap([lat, lng]);
             
             var marker = L.marker([lat, lng]).addTo(map);
-            var popup = L.popup({
-                closeButton: false,
-                className: "custom-popup",
-            }).setContent(
-                `${ site.sitename }<span>${ site.categoryname }</span>`
-            );
-            marker.bindPopup(popup);
 
             return [lat, lng];
         }
@@ -28,5 +21,5 @@ function addMarker() {
 }
 
 $(function() {
-    addMarker();
+    makeMapAndOneMarker();
 });

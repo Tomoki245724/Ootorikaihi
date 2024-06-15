@@ -26,7 +26,7 @@ function makeMap(center=[36.105446527684215, 140.10174633069715]) {
     return map;
 }
 
-function addMarker(addTo, latLng, sitename, categoryname, categoryid) {
+function addMarker(addTo, latLng, sitename, siteid, categoryname, categoryid) {
     var customIcon = L.icon({
         iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
         shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
@@ -42,7 +42,7 @@ function addMarker(addTo, latLng, sitename, categoryname, categoryid) {
         closeButton: false,
         className: "custom-popup",
     }).setContent(
-        `${ sitename }<span>${ categoryname }</span>`
+        `<a href="../site/${siteid}">${ sitename }</a><span>${ categoryname }</span>`
     );
     marker.bindPopup(popup);
 }

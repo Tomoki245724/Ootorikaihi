@@ -1,6 +1,6 @@
 import { makeMap } from "./map_utils.js";
 
-function addMarker() {
+function makeMapAndOneMarker() {
     var dataUrl = `/data/${site_id}`;
     var [map, marker] = [0, 0]
 
@@ -14,21 +14,14 @@ function addMarker() {
             map = makeMap([lat, lng]);
             
             marker = L.marker([lat, lng]).addTo(map);
-            var popup = L.popup({
-                closeButton: false,
-                className: "custom-popup",
-            }).setContent(
-                `${ site.sitename }<span>${ site.categoryname }</span>`
-            );
-            marker.bindPopup(popup);
         }
     });
 
-    return [map, marker];
+    return [map, marker, site.categoryid];
 }
 
 $(function() {
-    var [map, marker] = addMarker();
+    var [map, marker, categoryid] = makeMapAndOneMarker();
 
     map.on("click", function(e) {
         var lat = e.latlng.lat;
@@ -38,6 +31,5 @@ $(function() {
         if (marker) {
             marker.remove(map);
         }
-        marker = L.marker(e.latlng).addTo(map);
     });
 });
