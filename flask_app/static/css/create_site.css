@@ -240,3 +240,7 @@ a.toedit:focus {
 .site input[type="submit-erase"]:focus {
   border-color:#b0c4de;
 }
+
+img {
+    width: 50%;
+}

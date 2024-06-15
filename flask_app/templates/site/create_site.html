@@ -22,6 +22,7 @@
             action="{{url_for('main.create_site', genre_id=genre.genid)}}"
             method="POST"
             novalidate="novalidate"
+            enctype="multipart/form-data"
         >
     
             {{ form.csrf_token }}
@@ -38,6 +39,11 @@
                 {{ form.longitude.label }}{{ form.longitude(size=30, placeholder="地点をクリックで入力できます") }}
             </p>
             <div id="map"></div>
+            <p>
+                {{ form.image.label }}
+                {{ form.image(id="upload-image") }}
+            </p>
+            <img id="preview" src="" />
             <p>
                 {{ form.submit() }}
                 <br>

@@ -62,5 +62,6 @@ class Picture(db.Model):
     picid = db.Column(db.Integer, primary_key=True)
     poster = db.Column(db.String)
     siteid = db.Column(db.Integer)
-    content = db.Column(db.String)
+    path = db.Column(db.String)
+    uploaded_at = db.Column(db.DateTime, default=datetime.now)
     
