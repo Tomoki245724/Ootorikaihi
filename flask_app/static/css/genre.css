@@ -196,6 +196,11 @@ a.tonext:focus {
   border-color:#4d9980;
 }
 
+a.fixed-bottom {
+  position: fixed;
+  bottom: 0;
+}
+
 /*削除色用*/
 .genre input[type="submit-erase"] {
   background: #b0c4de;
