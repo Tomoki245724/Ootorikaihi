@@ -29,7 +29,6 @@ table {
 
 table tr{
   border-bottom: solid 1px #eee;
-  cursor: pointer;
 }
 
 table tr:hover{
@@ -73,7 +72,7 @@ padding: 10px 50px;
 }
 /*プチプチヘッダー*/
 .site-h4 {
-background: #778899;
+background: #28d;
 padding: 10px;
 /*font-size: 1.4em;*/
 font-weight: normal;
@@ -81,7 +80,8 @@ text-transform: uppercase;
 color: #fff;
 border-radius: 5px;
 display:inline-block;
-padding: 3px 10px;
+padding: 3px 30px;
+margin :10px 0px;
 }
 
 .site-container {

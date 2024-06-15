@@ -40,13 +40,13 @@
         >
             {{ form.csrf_token }}
             <p>
-                {{ form.comment.label }}
+                <h4 class = "site-h4">{{ form.comment.label }}</h4>
                 {{ form.comment(size=60) }}
                 <br>
                 {{ form.submit() }}
             </p>
         </form>
-        <br>コメント一覧<br>
+        <h4 class = "site-h4">コメント</h4>
         {% if comments %}
         <table>
             {% for comment in comments %}
