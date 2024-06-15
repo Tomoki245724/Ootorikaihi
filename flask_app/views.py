@@ -277,8 +277,12 @@ def site_info(site_id):
     comments = Comment.query.filter_by(siteid=site_id).all()
     posters = User.query.all()
     main_picture = Picture.query.filter_by(siteid=site_id).first()
+    if (main_picture):
+        main_picture_path = main_picture.path
+    else:
+        main_picture_path = ""
     form = PostCommentForm()
-    return render_template("site/site_info.html",  site=site, genre=genre, creator=creator, comments=comments, main_picture=main_picture, form=form)
+    return render_template("site/site_info.html",  site=site, genre=genre, creator=creator, comments=comments, main_picture_path=main_picture_path, form=form)
 
 # サイト情報編集
 @main.route("/edit_site/<int:site_id>", methods=["GET", "POST"])

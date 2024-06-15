@@ -23,8 +23,9 @@
         <!--<p>座標: {{ site.coordinates }}</p>-->
         <div id="map"></div>
         <p>{{ site.content }}</p>
-        <img id="main-image" src="{{ url_for('static', filename='images/uploaded_images/' + main_picture.path) }}" />
-
+        {% if main_picture_path %} 
+            <img id="main-image" src="{{ url_for('static', filename='images/uploaded_images/' + main_picture_path) }}" />
+        {% endif %}
         <ul>
         <!-- {% for picture in pictures %} -->
             <li><img src="" /></li> <!-- 後で実装 -->
