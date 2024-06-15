@@ -15,6 +15,7 @@
 {% block content %}
 <body>
     {% include "header.html" %}
+    <br>
     <div class = "site">
         <h2 class = "site-header">{{ site.sitename }}</h2>
         <p>ジャンル: <a class = "togenre" href="{{ url_for('main.genre_info', genre_id=genre.genid) }}">{{ genre.genname }}</a>
@@ -43,11 +44,11 @@
                 {{ form.submit() }}
             </p>
         </form>
+        <br>コメント一覧<br>
         <table>
             {% for comment in comments %}
                 <tr>
-                    <th>{{ comment.poster }} ： </tr>
-                    <th>{{ comment.content }}</th>
+                    <th>{{ comment.poster }} ： {{ comment.content }}</tr>
                 </tr>
             {% endfor %}
         </table>
@@ -55,6 +56,7 @@
             var site_id = "{{ site.siteid }}";
         </script>
         <script type="module" src="{{ url_for('static', filename='js/site_info.js') }}"></script>
+        <br>
         <a href="{{url_for('main.genres')}}" class = "togray">ジャンル一覧へ</a>
     </div>
 </body>

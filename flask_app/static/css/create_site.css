@@ -31,9 +31,10 @@ table tr:hover{
 }
   
 table th,table td{
-    text-align: center;
+    text-align: left;
     width: 25%;
     padding: 15px 0;
+    padding-left: 5px;
 }
 
 /* Reset top and bottom margins from certain elements */
@@ -179,27 +180,6 @@ a.togray:hover {
 }
 
 a.togray:focus {
-  border-color:#778899;
-}
-
-
-/*genreへ　aタグでback　小グレーボタン*/
-a.togenre{
-  display:block;
-  color: #fff;
-  background: #b0c4de;
-  padding: 3px 20px;
-  display: inline-block;
-  border-radius: 5px;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-a.togenre:hover {
-  background: #778899;
-}
-
-a.togenre:focus {
   border-color:#778899;
 }
 

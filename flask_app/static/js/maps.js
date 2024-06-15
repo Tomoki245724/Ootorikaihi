@@ -25,6 +25,7 @@ function renderData(map) {
                     genreLayers[site.categoryid],
                     [lat, lng],
                     site.sitename,
+                    site.siteid,
                     site.categoryname,
                     site.categoryid,
                 );
