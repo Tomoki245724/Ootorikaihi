@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP');
+* {
+    margin: 0;
+    padding: 0;
+}
 a.header{
     text-decoration: none;
     color: #ffffff;
