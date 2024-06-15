@@ -23,6 +23,7 @@
         <li><a href="{{ url_for('main.site_info', site_id=site.siteid) }}" class = "tonext">{{ site.sitename }}</a></li>
     {% endfor %}
     </ul>
+    <br>
     <a href="{{url_for('main.genres')}}" class = "togray fixed-bottom">ジャンル一覧へ</a>
 </div>
 </body>
