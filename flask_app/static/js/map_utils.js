@@ -47,4 +47,32 @@ function addMarker(addTo, latLng, sitename, siteid, categoryname, categoryid) {
     marker.bindPopup(popup);
 }
 
-export { makeMap, addMarker };
+function makeMapAndOneMarker(siteData) {
+    var coordinates = siteData[0].coordinates;
+    if (coordinates) {
+        var [lat, lng] = coordinates.split(",").map(parseFloat);
+
+        var map = makeMap([lat, lng]);
+        
+        var customIcon = L.icon({
+            iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
+            shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            tooltipAnchor: [16, -28],
+            shadowSize: [41, 41],
+            className: `icon-${ siteData[0].categoryid }`,
+        });
+        var marker = L.marker([lat, lng], {icon: customIcon}).addTo(map);
+
+        return [map, marker];
+    }
+}
+
+function changeMarkerColor(genreId) {
+    var color_deg = Number(genreId) * 53;
+    $(`.icon-${ genreId }`).css("filter", `hue-rotate(${ color_deg }deg)`);
+}
+
+export { makeMap, addMarker, makeMapAndOneMarker, changeMarkerColor };

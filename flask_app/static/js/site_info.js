@@ -1,25 +1,14 @@
-import { makeMap } from "./map_utils.js";
+import { makeMapAndOneMarker, changeMarkerColor } from "./map_utils.js";
 
-function makeMapAndOneMarker() {
+$(function() {
     var dataUrl = `/data/${site_id}`;
 
     $.ajaxSetup({async: false});
 
     $.getJSON(dataUrl, function(site) {
-        var coordinates = site[0].coordinates;
-        if (coordinates) {
-            var [lat, lng] = coordinates.split(",").map(parseFloat);
-
-            var map = makeMap([lat, lng]);
-            
-            var marker = L.marker([lat, lng]).addTo(map);
-
-            return [lat, lng];
-        }
+        var siteData = site;
+        var [map, marker] = makeMapAndOneMarker(site);
+        var genId = site[0].categoryid;
+        changeMarkerColor(genId);
     });
-
-}
-
-$(function() {
-    makeMapAndOneMarker();
 });

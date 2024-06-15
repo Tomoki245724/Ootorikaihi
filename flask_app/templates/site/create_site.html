@@ -44,6 +44,7 @@
                 <a class = 'togray' href="{{ url_for('main.genre_info', genre_id=genre.genid) }}">キャンセル</a>
             </p>
         </form>
+        <script>var genId = "{{ genre.genid }}"</script>
         <script type="module" src="{{ url_for('static', filename='js/create_site.js') }}"></script>
     </div>
 </body>
