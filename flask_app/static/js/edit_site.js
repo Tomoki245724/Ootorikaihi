@@ -9,12 +9,14 @@ $(function() {
     $.ajaxSetup({async: false});
     
     $.getJSON(dataUrl, function(site) {
-        siteData = site;
+        siteData = site[0];
         [map, marker] = makeMapAndOneMarker(site);
-        genId = site[0].categoryid;
+        genId = siteData.categoryid;
         changeMarkerColor(genId);
         var coordinates =  siteData.coordinates;
-
+        var [strLat, strLng] = coordinates.split(",");
+        $("#latitude").val(strLat);
+        $("#longitude").val(strLng);
     });
 
     map.on("click", function(e) {
