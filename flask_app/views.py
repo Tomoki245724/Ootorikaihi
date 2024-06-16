@@ -239,10 +239,6 @@ def create_site(genre_id):
         )
         db.session.add(site)
         db.session.flush()
-        current_app.logger.debug('##########デバッグメッセージ')
-        current_app.logger.debug(form.image)
-        current_app.logger.debug(form.image.data)
-        current_app.logger.debug(os.path.join(current_app.config['UPLOAD_FOLDER'], "test1.jpg"))
 
         if form.image.data:
             image = form.image.data
@@ -251,7 +247,6 @@ def create_site(genre_id):
             image_path = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
             os.makedirs(os.path.dirname(image_path), exist_ok=True)
             image.save(image_path)
-            current_app.logger.debug('デバッグメッセージ1')
             picture = Picture(
                 poster = current_user.id,
                 siteid = site.siteid,
@@ -293,13 +288,28 @@ def edit_site(site_id):
     site = Sitedata.query.filter_by(siteid=site_id).first()
     genre = Genre.query.filter_by(genid=site.category).first()
     current = int(current_user.get_id())
+    main_picture = Picture.query.filter_by(siteid=site_id).first()
+    if (main_picture):
+        main_picture_path = main_picture.path
+    else:
+        main_picture_path = ""
+
     if form.validate_on_submit():
         site.sitename = form.sitename.data
         site.content = form.content.data
         site.coordinates = str(form.latitude.data) + "," + str(form.longitude.data)
+
+        if form.image.data:
+            image = form.image.data
+            extension = os.path.splitext(image.filename)[1]
+            filename = f"site{site.siteid}{extension}"
+            image_path = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
+            os.makedirs(os.path.dirname(image_path), exist_ok=True)
+            image.save(image_path)
+            main_picture.path = filename
         db.session.commit()
         return redirect(url_for("main.site_info", site_id=site_id))
-    return render_template("site/edit_site.html", form=form, genre=genre, site=site, current=current)
+    return render_template("site/edit_site.html", form=form, genre=genre, site=site, current=current, main_picture_path=main_picture_path)
 
 # サイト削除
 @main.route("/site/<int:site_id>/delete", methods=["POST"])

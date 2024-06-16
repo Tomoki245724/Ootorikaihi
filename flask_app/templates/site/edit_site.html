@@ -20,6 +20,7 @@
             action="{{ url_for('main.edit_site', site_id=site.siteid) }}"
             method="POST"
             novalidate="novalidate"
+            enctype="multipart/form-data"
         >
         {{ form.csrf_token }}
             <p>
@@ -42,6 +43,13 @@
             <span style="color:red;">{{ error }}</span>
             {% endfor %}
             <div id="map"></div>
+            <p>
+                {{ form.image.label }}
+                {{ form.image(id="upload-image") }}
+            </p>
+            {% if main_picture_path %} 
+                <img id="main-image" src="{{ url_for('static', filename='images/uploaded_images/' + main_picture_path) }}" />
+            {% endif %}
             <p>
                 <input type="submit" value="更新" />
                 <br>

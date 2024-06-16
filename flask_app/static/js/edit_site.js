@@ -13,6 +13,8 @@ $(function() {
         [map, marker] = makeMapAndOneMarker(site);
         genId = site[0].categoryid;
         changeMarkerColor(genId);
+        var coordinates =  siteData.coordinates;
+
     });
 
     map.on("click", function(e) {
@@ -38,4 +40,18 @@ $(function() {
         marker = L.marker(e.latlng, {icon: customIcon}).addTo(map);
         changeMarkerColor(genId);
     });
+
+    $("#upload-image").on("change", function(e) {
+        var file = e.target.files[0];
+        var reader = new FileReader();
+        reader.onload = function(f) {
+            var img = new Image();
+            img.src = f.target.result;
+            console.log(img.src);
+            img.onload = function() {
+                $("#main-image").attr("src", img.src);
+            };
+        };
+        reader.readAsDataURL(file);
+    })
 });
