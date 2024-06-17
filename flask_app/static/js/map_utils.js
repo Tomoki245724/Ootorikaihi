@@ -43,7 +43,7 @@ function addMarker(addTo, latLng, sitename, siteid, categoryname, categoryid) {
         closeButton: false,
         className: "custom-popup",
     }).setContent(
-        `<span>${ categoryname }</span><a href="../site/${siteid}">${ sitename }</a>
+        `<span>${ categoryname }</span><a href="../site/${siteid}">${ sitename }</a><br>
         <a class="to-googlemaps" href="https://www.google.co.jp/maps/place/${coordinates}">GoogleMapsへ</a>`
     );
     marker.bindPopup(popup);
